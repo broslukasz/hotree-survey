@@ -15,9 +15,9 @@ header {
   background: $header-color-line02;
   color: $font-color-header;
   height: 80px;
-  h3 {
-    font-size: 24px;
+  h1 {
     flex-basis: $content-default-width;
     padding-top: 10px;
+    padding-left: $hotree-defulat-indent;
   }
 }
