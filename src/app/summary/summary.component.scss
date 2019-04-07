@@ -1,0 +1,11 @@
+@import "~src/variables";
+
+:host {
+    display: flex;
+    justify-content: center;
+    margin-top: 32px;
+
+    main {
+      flex-basis: $content-default-width;
+  }
+}
