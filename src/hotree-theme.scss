@@ -16,3 +16,13 @@
     box-shadow: 0 0 0 0.2rem rgba(255,142,64,.25);
   }
 }
+
+app-new-event, app-summary {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+
+  main {
+    flex-basis: $content-default-width;
+  }
+}
