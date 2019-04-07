@@ -1,0 +1,23 @@
+@import "~src/variables";
+
+header {
+  background: $header-color-line01;
+  padding-top: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.header-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 100%;
+  background: $header-color-line02;
+  color: $font-color-header;
+  height: 80px;
+  h3 {
+    font-size: 24px;
+    flex-basis: 70%;
+    padding-top: 4px;
+  }
+}
