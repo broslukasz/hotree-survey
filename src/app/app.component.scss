@@ -17,7 +17,7 @@ header {
   height: 80px;
   h3 {
     font-size: 24px;
-    flex-basis: 70%;
-    padding-top: 4px;
+    flex-basis: $content-default-width;
+    padding-top: 10px;
   }
 }
