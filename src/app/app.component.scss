@@ -1,7 +1,7 @@
 @import "~src/variables";
 
 header {
-  background: $header-color-line01;
+  background: $header-background01;
   padding-top: 15px;
   display: flex;
   justify-content: center;
@@ -12,7 +12,7 @@ header {
   justify-content: center;
   align-items: center;
   flex-basis: 100%;
-  background: $header-color-line02;
+  background: $header-background02;
   color: $font-color-header;
   height: 80px;
   h1 {

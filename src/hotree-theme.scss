@@ -26,3 +26,12 @@ app-new-event, app-summary {
     flex-basis: $content-default-width;
   }
 }
+
+h5 {
+  color: $heading-blue01;
+}
+
+.hotree-new-survey--row {
+  margin-left: 0;
+  margin-right: 0;
+}

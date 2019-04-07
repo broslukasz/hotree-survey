@@ -5,3 +5,9 @@
   justify-content: center;
   margin-top: 24px;
 }
+
+label {
+  color: $heading-blue02;
+  text-transform: uppercase;
+  font-size: $font-size-label;
+}

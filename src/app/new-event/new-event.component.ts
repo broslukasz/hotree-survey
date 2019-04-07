@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-event',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./new-event.component.scss']
 })
 export class NewEventComponent {
+  newEventForm = this.fb.group({
+    title: ['', Validators.required]
+  });
 
+  constructor(
+    private fb: FormBuilder
+  ) {
+  }
+
+  onSubmit() {
+    console.log('submited');
+  }
 }

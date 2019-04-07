@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from '../core/core.module';
 import { NewEventComponent } from './new-event/new-event.component';
 import { SummaryComponent } from './summary/summary.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,9 @@ import { SummaryComponent } from './summary/summary.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CoreModule.forRoot()
+    CoreModule.forRoot(),
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
