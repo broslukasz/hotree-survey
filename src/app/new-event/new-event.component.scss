@@ -11,3 +11,7 @@ label {
   text-transform: uppercase;
   font-size: $font-size-label;
 }
+
+.label-is-invalid, .required-field-star, .invalid-message {
+  color: $form-color-invalid;
+}

@@ -19,4 +19,6 @@ export class NewEventComponent {
   onSubmit() {
     console.log('submited');
   }
+
+  get title() { return this.newEventForm.get('title'); }
 }

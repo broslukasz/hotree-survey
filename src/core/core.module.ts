@@ -5,7 +5,6 @@ import { AngularFireModule } from '@angular/fire';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -16,7 +15,6 @@ import { FormsModule } from '@angular/forms';
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
-    FormsModule
   ]
 })
 export class CoreModule {
