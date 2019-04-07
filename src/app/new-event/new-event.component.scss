@@ -8,8 +8,10 @@
   main {
     flex-basis: $content-default-width;
   }
+}
 
-  .card-body {
-    padding-left: $hotree-defulat-indent;
-  }
+.publish-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
 }

@@ -1,10 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
+@import "~src/hotree-theme";
 @import "variables";
+
+html {
+  height: 100%;
+}
 
 body {
   font-family: sans-serif;
   font-size: $font-size-normal;
+  background: $background-color;
+  height: inherit;
 }
 
 h1 {
