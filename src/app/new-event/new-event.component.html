@@ -6,7 +6,7 @@
         <hr/>
 
         <div class="form-group row hotree-new-survey--row">
-          <label for="titleControl" class="col-xs-2 col-form-label">Title</label>
+          <label for="titleControl" class="col-sm-2 col-form-label">Title</label>
           <div class="col-sm-8">
             <input type="text" formControlName="title" required
                    class="form-control" id="titleControl"
@@ -19,9 +19,7 @@
 
     <div class="publish-button">
       <button
-        routerLink="/summary"
         type="submit"
-        [disabled]="!newEventForm.valid"
         class="btn hotree-btn-primary">PUBLISH EVENT</button>
     </div>
   </form>
