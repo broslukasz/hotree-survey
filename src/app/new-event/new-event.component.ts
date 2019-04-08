@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NewEvent } from './new-event';
 import { Router } from '@angular/router';
 import { NewEventService } from './new-event.service';
-import { NewEventFieldDescription, NewEventFormField } from './new-event-form-fields';
+import { NewEventFormField } from './new-event-form-fields';
 
 @Component({
   selector: 'app-new-event',
@@ -14,7 +14,6 @@ import { NewEventFieldDescription, NewEventFormField } from './new-event-form-fi
 })
 export class NewEventComponent {
   public readonly formField = NewEventFormField;
-  public readonly fieldDescription = NewEventFieldDescription;
   newEventForm = this.fb.group({
     [NewEventFormField.title]: ['', Validators.required],
     [NewEventFormField.description]: ['', [Validators.required, Validators.maxLength(140)]]

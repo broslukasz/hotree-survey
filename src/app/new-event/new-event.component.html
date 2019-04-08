@@ -5,42 +5,17 @@
         <h5 class="card-title">About</h5>
         <hr/>
 
-        <div class="form-group row hotree-new-survey-row">
-          <label [for]="formField.title + 'Control'" class="col-sm-2 col-form-label hotree-form-label">
-            <span [class.label-is-invalid]="title.invalid && title.touched">{{ fieldDescription[formField.title] }}</span>
-            <span class="required-field-star"> *</span>
-          </label>
-          <div class="col-sm-8">
-            <input type="text" [formControlName]="formField.title" required
-                   class="form-control" [class.is-invalid]="title.invalid && title.touched" [id]="formField.title + 'Control'"
-                   placeholder="Make it short and clear">
-          </div>
-          <app-hotree-tooltip
-            *ngIf="title.invalid && title.touched" class="col-sm-2"
-            tooltipText="{{fieldDescription.title}} cannot be empty"
-          ></app-hotree-tooltip>
-        </div>
+        <app-hotree-form-field [formField]="title" [formFieldName]="formField.title">
+          <input type="text" [formControlName]="formField.title" required
+                 class="form-control" [class.is-invalid]="title.invalid && title.touched" [id]="formField.title + 'Control'"
+                 placeholder="Make it short and clear">
+        </app-hotree-form-field>
 
-        <div class="form-group row hotree-new-survey-row">
-          <label [for]="formField.description + 'Control'" class="col-sm-2 col-form-label hotree-form-label">
-            <span [class.label-is-invalid]="description.invalid && description.touched">{{ fieldDescription[formField.description] }}</span>
-            <span class="required-field-star"> *</span>
-          </label>
-          <div class="col-sm-8">
+        <app-hotree-form-field [formField]="description" [formFieldName]="formField.description">
             <textarea type="text" [formControlName]="formField.description" maxlength="140" required
-                   class="form-control description-textares" [class.is-invalid]="description.invalid && description.touched" [id]="formField.description + 'Control'"
-                   placeholder="Write about your event, be creative">
-            </textarea>
-            <div class="character-counter hotree-field-tip-description">
-              <small [id]="formField.description + ' Help'" class="form-text">Max length 140 characters</small>
-              <small [id]="formField.description + ' Counter'" class="form-text">{{ description.value.toString().length }}/140</small>
-            </div>
-          </div>
-          <app-hotree-tooltip
-            *ngIf="description.invalid && description.touched" class="col-sm-2"
-            tooltipText="{{fieldDescription.description}} cannot be empty"
-          ></app-hotree-tooltip>
-        </div>
+                                class="form-control description-textarea" [class.is-invalid]="description.invalid && description.touched" [id]="formField.description + 'Control'"
+                                placeholder="Write about your event, be creative"></textarea>
+        </app-hotree-form-field>
 
       </div>
     </div>

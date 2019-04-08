@@ -9,13 +9,15 @@ import { SummaryComponent } from './summary/summary.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HotreeTooltipComponent } from './new-event/hotree-tooltip/hotree-tooltip.component';
+import { HotreeFormFieldComponent } from './new-event/hotree-form-field/hotree-form-field.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewEventComponent,
     SummaryComponent,
-    HotreeTooltipComponent
+    HotreeTooltipComponent,
+    HotreeFormFieldComponent
   ],
   imports: [
     BrowserModule,

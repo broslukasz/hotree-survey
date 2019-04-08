@@ -6,16 +6,6 @@
   margin-top: 24px;
 }
 
-label {
-  color: $heading-blue02;
-  text-transform: uppercase;
-  font-size: $font-size-label;
-}
-
-.label-is-invalid, .required-field-star {
-  color: $form-color-invalid;
-}
-
-.description-textares {
+.description-textarea {
   height: 140px;
 }

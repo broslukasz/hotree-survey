@@ -1,0 +1,11 @@
+@import "~src/variables";
+
+.label-is-invalid, .required-field-star {
+  color: $form-color-invalid;
+}
+
+label {
+  color: $heading-blue02;
+  text-transform: uppercase;
+  font-size: $font-size-label;
+}

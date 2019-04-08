@@ -1,0 +1,15 @@
+<div class="form-group row hotree-new-survey-row">
+  <label class="col-sm-2 col-form-label hotree-form-label">
+    <span [class.label-is-invalid]="formField.invalid && formField.touched">{{ newEventFieldDescription[formFieldName] }}</span>
+    <span class="required-field-star"> *</span>
+  </label>
+  <div class="col-sm-8">
+    <ng-content></ng-content>
+  </div>
+  <app-hotree-tooltip
+    *ngIf="formField.invalid && formField.touched" class="col-sm-2"
+    tooltipText="{{newEventFieldDescription[formFieldName]}} cannot be empty"
+  ></app-hotree-tooltip>
+</div>
+
+
