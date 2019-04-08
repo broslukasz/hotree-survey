@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { NewEventComponent } from '../new-event.component';
+import { BehaviorSubject } from 'rxjs';
 
-@Injectable({
-  providedIn: NewEventComponent
-})
+@Injectable()
 export class NewEventDataService {
+  categories$ = new BehaviorSubject(['first', 'second']);
 }

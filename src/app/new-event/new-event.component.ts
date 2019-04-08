@@ -1,30 +1,39 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NewEvent } from './new-event';
 import { Router } from '@angular/router';
-import { NewEventService } from './new-event.service';
+import { NewEventService } from './services/new-event.service';
 import { NewEventFormField } from './new-event-form-fields';
+import { NewEventDataService } from './services/new-event-data.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-new-event',
   templateUrl: './new-event.component.html',
   styleUrls: ['./new-event.component.scss'],
-  providers: [NewEventService],
+  providers: [NewEventService, NewEventDataService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NewEventComponent {
+export class NewEventComponent implements OnInit {
   public readonly formField = NewEventFormField;
   newEventForm = this.fb.group({
     [NewEventFormField.title]: ['', Validators.required],
     [NewEventFormField.description]: ['', [Validators.required, Validators.maxLength(140)]],
-    [NewEventFormField.category]: ['']
+    [NewEventFormField.category]: [['']]
   });
+
+  private categories: BehaviorSubject<string[]>;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private newEventService: NewEventService
+    private newEventService: NewEventService,
+    private newEventDataService: NewEventDataService
   ) {
+  }
+
+  ngOnInit(): void {
+    this.categories = this.newEventDataService.categories$;
   }
 
   onSubmit(): void {
@@ -36,7 +45,8 @@ export class NewEventComponent {
     this.newEventService.logFormOutputToConsole(
       new NewEvent(
         this.newEventForm.get(NewEventFormField.title).value,
-        this.newEventForm.get(NewEventFormField.description).value
+        this.newEventForm.get(NewEventFormField.description).value,
+        this.newEventForm.get(NewEventFormField.category).value
       )
     );
 
@@ -45,5 +55,5 @@ export class NewEventComponent {
 
   get title() { return this.newEventForm.get(NewEventFormField.title); }
   get description() { return this.newEventForm.get(NewEventFormField.description); }
-  get category() { return this.newEventForm.get(NewEventFormField.description); }
+  get category() { return this.newEventForm.get(NewEventFormField.category); }
 }

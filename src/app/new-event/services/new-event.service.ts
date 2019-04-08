@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NewEvent } from './new-event';
+import { NewEvent } from '../new-event';
 import { AbstractControl } from '@angular/forms';
 
 @Injectable()

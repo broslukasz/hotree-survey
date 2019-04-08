@@ -50,3 +50,10 @@ h5 {
     color: $font-color-field-description;
   }
 }
+
+.hotree-option-text {
+  color: $font-color-placeholder;
+  option {
+    font-size: $font-size-normal;
+  }
+}

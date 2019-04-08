@@ -4,7 +4,7 @@ import { NewEventComponent } from './new-event.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { instance, mock } from 'ts-mockito';
 import { RouterTestingModule } from '@angular/router/testing';
-import { NewEventService } from './new-event.service';
+import { NewEventService } from './services/new-event.service';
 import { Router } from '@angular/router';
 import { NewEventFormField } from './new-event-form-fields';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
