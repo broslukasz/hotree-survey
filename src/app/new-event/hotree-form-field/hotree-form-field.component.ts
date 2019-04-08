@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { NewEventFieldDescription } from '../new-event-form-fields';
 
 @Component({
@@ -11,10 +11,10 @@ export class HotreeFormFieldComponent implements OnInit {
   public readonly newEventFieldDescription = NewEventFieldDescription;
 
   @Input()
-  formField: AbstractControl;
+  formField: FormControl;
 
   @Input()
-  formFieldName: AbstractControl;
+  formFieldName: FormControl;
 
   constructor() { }
 
