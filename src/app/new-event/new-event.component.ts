@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { NewEvent } from './new-event';
 import { Router } from '@angular/router';
+import { NewEventService } from './new-event.service';
+import { NewEventFormFields } from './new-event-form-fields';
 
 @Component({
   selector: 'app-new-event',
   templateUrl: './new-event.component.html',
-  styleUrls: ['./new-event.component.scss']
+  styleUrls: ['./new-event.component.scss'],
+  providers: [NewEventService]
 })
 export class NewEventComponent {
   newEventForm = this.fb.group({
@@ -16,22 +19,21 @@ export class NewEventComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private newEventService: NewEventService
   ) {
   }
 
   onSubmit(): void {
     if (this.newEventForm.invalid) {
-      Object.keys(this.newEventForm.controls).forEach((field: string) => {
-        const control: AbstractControl = this.newEventForm.get(field);
-        control.markAsTouched({ onlySelf: true });
-      });
-
+      this.newEventService.checkFormValidation(this.newEventForm);
       return;
     }
 
-    console.log('Form submited', new NewEvent(
-      this.newEventForm.get('title').value
-    ));
+    this.newEventService.logFormOutputToConsole(
+      new NewEvent(
+        this.newEventForm.get('title').value
+      )
+    );
 
     this.router.navigate(['summary']);
   }
