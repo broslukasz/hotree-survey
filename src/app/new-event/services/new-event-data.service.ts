@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Category } from '../models/category';
+// @ts-ignore
+import jsonCategories from '../../../data/categories.json';
 
 @Injectable()
 export class NewEventDataService {
-  categories$ = new BehaviorSubject<Category[]>([{id: 1, name: 'first'}]);
+  private categoriesSource = new BehaviorSubject<Category[]>(jsonCategories);
+  categories$ = this.categoriesSource.asObservable();
 
-  getCategory(value: any): number | undefined {
+  prepareCategoryForSend(value: any): number | undefined {
     return value ? value : undefined;
   }
 }

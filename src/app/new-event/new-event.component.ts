@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { NewEventService } from './services/new-event.service';
 import { NewEventFormField } from './new-event-form-fields';
 import { NewEventDataService } from './services/new-event-data.service';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Category } from './models/category';
 
 @Component({
@@ -23,7 +23,7 @@ export class NewEventComponent implements OnInit {
     [NewEventFormField.category]: ['']
   });
 
-  private categories: BehaviorSubject<Category[]>;
+  private categories: Observable<Category[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -47,7 +47,7 @@ export class NewEventComponent implements OnInit {
       new NewEvent(
         this.newEventForm.get(NewEventFormField.title).value,
         this.newEventForm.get(NewEventFormField.description).value,
-        this.newEventDataService.getCategory(
+        this.newEventDataService.prepareCategoryForSend(
           this.newEventForm.get(NewEventFormField.category).value
         )
       )
