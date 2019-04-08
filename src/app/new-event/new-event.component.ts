@@ -40,5 +40,5 @@ export class NewEventComponent {
     this.router.navigate(['summary']);
   }
 
-  get title() { return this.newEventForm.get('title'); }
+  get title() { return this.newEventForm.get(NewEventFormField.title); }
 }
