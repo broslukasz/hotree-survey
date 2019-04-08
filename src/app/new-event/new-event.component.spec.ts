@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { NewEventFormField } from './new-event-form-fields';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SummaryComponent } from '../summary/summary.component';
+import { NewEventDataService } from './services/new-event-data.service';
 
 describe('NewEventComponent', () => {
   let component: NewEventComponent;
@@ -17,7 +18,8 @@ describe('NewEventComponent', () => {
   const formBuilder: FormBuilder = new FormBuilder();
   const validForm = {
     title: 'Simple title',
-    description: 'Sample description'
+    description: 'Sample description',
+    category: [['category1', 'category2']]
   };
   let newEventService: NewEventService;
   let router: Router;
@@ -41,7 +43,8 @@ describe('NewEventComponent', () => {
     }).overrideComponent(NewEventComponent, {
       set: {
         providers: [
-          { provide: NewEventService, useValue: instance(mock(NewEventService))}
+          { provide: NewEventService, useValue: instance(mock(NewEventService))},
+          { provide: NewEventDataService, useValue: instance(mock(NewEventDataService))}
         ]
       }
     })

@@ -16,7 +16,8 @@ export class NewEventComponent {
   public readonly formField = NewEventFormField;
   newEventForm = this.fb.group({
     [NewEventFormField.title]: ['', Validators.required],
-    [NewEventFormField.description]: ['', [Validators.required, Validators.maxLength(140)]]
+    [NewEventFormField.description]: ['', [Validators.required, Validators.maxLength(140)]],
+    [NewEventFormField.category]: ['']
   });
 
   constructor(
@@ -44,4 +45,5 @@ export class NewEventComponent {
 
   get title() { return this.newEventForm.get(NewEventFormField.title); }
   get description() { return this.newEventForm.get(NewEventFormField.description); }
+  get category() { return this.newEventForm.get(NewEventFormField.description); }
 }

@@ -1,20 +1,47 @@
 <main>
-  <form [formGroup]="newEventForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="newEventForm" (ngSubmit)="onSubmit()" novalidate>
     <div class="card">
       <div class="card-body hotree-default-indent">
         <h5 class="card-title">About</h5>
         <hr/>
 
-        <app-hotree-form-field [formField]="title" [formFieldName]="formField.title">
+        <app-hotree-form-field [required]="true" [formField]="title" [formFieldName]="formField.title">
           <input type="text" [formControlName]="formField.title" required
                  class="form-control" [class.is-invalid]="title.invalid && title.touched" [id]="formField.title + 'Control'"
                  placeholder="Make it short and clear">
         </app-hotree-form-field>
 
-        <app-hotree-form-field [formField]="description" [formFieldName]="formField.description">
+        <app-hotree-form-field [required]="true" [formField]="description" [formFieldName]="formField.description">
             <textarea type="text" [formControlName]="formField.description" maxlength="140" required
                                 class="form-control description-textarea" [class.is-invalid]="description.invalid && description.touched" [id]="formField.description + 'Control'"
                                 placeholder="Write about your event, be creative"></textarea>
+            <div class="character-counter hotree-field-tip-description">
+              <small [id]="formField.description + 'Help'" class="form-text">Max length 140 characters</small>
+              <small [id]="formField.description + 'Counter'" class="form-text">{{ description.value.toString().length }}/140</small>
+            </div>
+        </app-hotree-form-field>
+
+        <app-hotree-form-field [formField]="category" [formFieldName]="formField.category">
+          <select class="form-control"
+                  formControlName="category">
+            <option value=""
+                    disabled
+                    selected
+                    hidden>Select a State...</option>
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </select>
+          <div class="character-counter hotree-field-tip-description">
+            <small [id]="formField.category + 'Help'" class="form-text">
+              Describes topic and people who should be interested in this event
+            </small>
+          </div>
         </app-hotree-form-field>
 
       </div>

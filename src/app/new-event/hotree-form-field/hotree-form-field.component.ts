@@ -8,13 +8,16 @@ import { NewEventFieldDescription } from '../new-event-form-fields';
   styleUrls: ['./hotree-form-field.component.scss']
 })
 export class HotreeFormFieldComponent implements OnInit {
-  public readonly newEventFieldDescription = NewEventFieldDescription;
-
   @Input()
   formField: AbstractControl | null;
 
   @Input()
   formFieldName: string;
+
+  @Input()
+  required = false;
+
+  readonly newEventFieldDescription = NewEventFieldDescription;
 
   constructor() { }
 
