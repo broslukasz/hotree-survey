@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Category } from '../models/category';
 // @ts-ignore
-import jsonCategories from '../../../data/categories.json';
+import jsonCategories from '../../../../data/categories.json';
 
 @Injectable()
 export class NewEventDataService {

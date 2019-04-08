@@ -2,6 +2,6 @@ export class NewEvent {
   constructor(
     public title: string,
     public description: string,
-    public category: number
+    public category_id: number
   ) { }
 }
