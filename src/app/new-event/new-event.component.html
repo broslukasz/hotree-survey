@@ -26,7 +26,7 @@
                   formControlName="category">
             <option value=""
                     hidden>Select category (skills, interest, location)</option>
-            <option *ngFor="let singleCategory of (categories | async)" [value]="singleCategory">{{singleCategory}}</option>
+            <option *ngFor="let singleCategory of (categories | async)" [value]="singleCategory.id">{{singleCategory.name}}</option>
           </select>
           <div class="character-counter hotree-field-tip-description">
             <small [id]="formField.category + 'Help'" class="form-text">

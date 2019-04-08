@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { NewEvent } from './new-event';
+import { NewEvent } from './models/new-event';
 import { Router } from '@angular/router';
 import { NewEventService } from './services/new-event.service';
 import { NewEventFormField } from './new-event-form-fields';
 import { NewEventDataService } from './services/new-event-data.service';
 import { BehaviorSubject } from 'rxjs';
+import { Category } from './models/category';
 
 @Component({
   selector: 'app-new-event',
@@ -19,10 +20,10 @@ export class NewEventComponent implements OnInit {
   newEventForm = this.fb.group({
     [NewEventFormField.title]: ['', Validators.required],
     [NewEventFormField.description]: ['', [Validators.required, Validators.maxLength(140)]],
-    [NewEventFormField.category]: [['']]
+    [NewEventFormField.category]: ['']
   });
 
-  private categories: BehaviorSubject<string[]>;
+  private categories: BehaviorSubject<Category[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +47,9 @@ export class NewEventComponent implements OnInit {
       new NewEvent(
         this.newEventForm.get(NewEventFormField.title).value,
         this.newEventForm.get(NewEventFormField.description).value,
-        this.newEventForm.get(NewEventFormField.category).value
+        this.newEventDataService.getCategory(
+          this.newEventForm.get(NewEventFormField.category).value
+        )
       )
     );
 
