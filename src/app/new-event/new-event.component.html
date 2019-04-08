@@ -15,7 +15,25 @@
                    class="form-control" [class.is-invalid]="title.invalid && title.touched" [id]="formField.title + 'Control'"
                    placeholder="Make it short and clear">
           </div>
-          <div class="col-sm-2 invalid-message" *ngIf="title.invalid && title.touched">Title cannot be empty</div>
+          <div class="col-sm-2 invalid-message" *ngIf="title.invalid && title.touched">{{fieldDescription.title}} cannot be empty</div>
+        </div>
+
+        <div class="form-group row hotree-new-survey-row">
+          <label [for]="formField.description + 'Control'" class="col-sm-2 col-form-label hotree-form-label">
+            <span [class.label-is-invalid]="description.invalid && description.touched">{{ fieldDescription[formField.description] }}</span>
+            <span class="required-field-star"> *</span>
+          </label>
+          <div class="col-sm-8">
+            <textarea type="text" [formControlName]="formField.description" required
+                   class="form-control" [class.is-invalid]="description.invalid && description.touched" [id]="formField.description + 'Control'"
+                   placeholder="Write about your event, be creative">
+            </textarea>
+            <div class="character-counter hotree-field-tip-description">
+              <small [id]="formField.description + ' Help'" class="form-text">Max length 140 characters</small>
+              <small [id]="formField.description + ' Counter'" class="form-text">0/140</small>
+            </div>
+          </div>
+          <div class="col-sm-2 invalid-message" *ngIf="description.invalid && description.touched">{{fieldDescription.description}} cannot be empty</div>
         </div>
 
       </div>

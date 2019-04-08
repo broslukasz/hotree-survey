@@ -39,3 +39,14 @@ h5 {
 .hotree-form-label {
   padding-left: 0;
 }
+
+.character-counter {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hotree-field-tip-description {
+  small {
+    color: $font-color-field-description;
+  }
+}

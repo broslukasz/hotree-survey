@@ -15,7 +15,8 @@ export class NewEventComponent {
   public readonly formField = NewEventFormField;
   public readonly fieldDescription = NewEventFieldDescription;
   newEventForm = this.fb.group({
-    [NewEventFormField.title]: ['', Validators.required]
+    [NewEventFormField.title]: ['', Validators.required],
+    [NewEventFormField.description]: ['', Validators.required]
   });
 
   constructor(
@@ -41,4 +42,5 @@ export class NewEventComponent {
   }
 
   get title() { return this.newEventForm.get(NewEventFormField.title); }
+  get description() { return this.newEventForm.get(NewEventFormField.description); }
 }

@@ -1,7 +1,9 @@
 export enum NewEventFormField {
-  title = 'title'
+  title = 'title',
+  description = 'description'
 }
 
 export enum NewEventFieldDescription {
-  title = 'Title'
+  title = 'Title',
+  description = 'Description'
 }
