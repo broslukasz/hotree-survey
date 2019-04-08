@@ -6,13 +6,13 @@
         <hr/>
 
         <div class="form-group row hotree-new-survey-row">
-          <label for="titleControl" class="col-sm-2 col-form-label hotree-form-label">
+          <label [for]="formField.title + 'Control'" class="col-sm-2 col-form-label hotree-form-label">
             <span [class.label-is-invalid]="title.invalid && title.touched">{{ fieldDescription[formField.title] }}</span>
             <span class="required-field-star"> *</span>
           </label>
           <div class="col-sm-8">
             <input type="text" [formControlName]="formField.title" required
-                   class="form-control" [class.is-invalid]="title.invalid && title.touched" id="titleControl"
+                   class="form-control" [class.is-invalid]="title.invalid && title.touched" [id]="formField.title + 'Control'"
                    placeholder="Make it short and clear">
           </div>
           <div class="col-sm-2 invalid-message" *ngIf="title.invalid && title.touched">Title cannot be empty</div>
