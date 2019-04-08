@@ -15,7 +15,10 @@
                    class="form-control" [class.is-invalid]="title.invalid && title.touched" [id]="formField.title + 'Control'"
                    placeholder="Make it short and clear">
           </div>
-          <div class="col-sm-2 invalid-message" *ngIf="title.invalid && title.touched">{{fieldDescription.title}} cannot be empty</div>
+          <app-hotree-tooltip
+            *ngIf="title.invalid && title.touched" class="col-sm-2"
+            tooltipText="{{fieldDescription.title}} cannot be empty"
+          ></app-hotree-tooltip>
         </div>
 
         <div class="form-group row hotree-new-survey-row">
@@ -33,7 +36,10 @@
               <small [id]="formField.description + ' Counter'" class="form-text">{{ description.value.toString().length }}/140</small>
             </div>
           </div>
-          <div class="col-sm-2 invalid-message" *ngIf="description.invalid && description.touched">{{fieldDescription.description}} cannot be empty</div>
+          <app-hotree-tooltip
+            *ngIf="description.invalid && description.touched" class="col-sm-2"
+            tooltipText="{{fieldDescription.description}} cannot be empty"
+          ></app-hotree-tooltip>
         </div>
 
       </div>

@@ -1,0 +1,25 @@
+@import "~src/variables";
+
+:host {
+  position: relative;
+  display: inline-block;
+  padding-left: 0;
+}
+
+.tooltip-text {
+  width: 100%;
+  background-color: $form-color-invalid;
+  color: white;
+  text-align: center;
+  padding: 5px;
+  border-radius: 2px;
+  &::after {
+    content: " ";
+    position: absolute;
+    top: 15px;
+    right: 100%;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent $form-color-invalid transparent transparent;
+  }
+}

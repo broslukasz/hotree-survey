@@ -8,12 +8,14 @@ import { NewEventComponent } from './new-event/new-event.component';
 import { SummaryComponent } from './summary/summary.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HotreeTooltipComponent } from './new-event/hotree-tooltip/hotree-tooltip.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewEventComponent,
-    SummaryComponent
+    SummaryComponent,
+    HotreeTooltipComponent
   ],
   imports: [
     BrowserModule,
