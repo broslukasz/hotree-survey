@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NewEvent } from './new-event';
 import { Router } from '@angular/router';
@@ -9,14 +9,15 @@ import { NewEventFieldDescription, NewEventFormField } from './new-event-form-fi
   selector: 'app-new-event',
   templateUrl: './new-event.component.html',
   styleUrls: ['./new-event.component.scss'],
-  providers: [NewEventService]
+  providers: [NewEventService],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewEventComponent {
   public readonly formField = NewEventFormField;
   public readonly fieldDescription = NewEventFieldDescription;
   newEventForm = this.fb.group({
     [NewEventFormField.title]: ['', Validators.required],
-    [NewEventFormField.description]: ['', Validators.required]
+    [NewEventFormField.description]: ['', [Validators.required, Validators.maxLength(140)]]
   });
 
   constructor(
@@ -34,7 +35,8 @@ export class NewEventComponent {
 
     this.newEventService.logFormOutputToConsole(
       new NewEvent(
-        this.newEventForm.get(NewEventFormField.title).value
+        this.newEventForm.get(NewEventFormField.title).value,
+        this.newEventForm.get(NewEventFormField.description).value
       )
     );
 

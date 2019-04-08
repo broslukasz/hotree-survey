@@ -14,7 +14,8 @@ describe('NewEventComponent', () => {
 
   const formBuilder: FormBuilder = new FormBuilder();
   const validForm = {
-    title: 'Simple Title'
+    title: 'Simple title',
+    description: 'Sample description'
   };
   let newEventService: NewEventService;
   let router: Router;
@@ -62,10 +63,11 @@ describe('NewEventComponent', () => {
     expect(newEventService.logFormOutputToConsole).toHaveBeenCalled();
   });
 
-  it('should check validation if untoched for submitted', () => {
+  it('should check validation if invalid form submitted', () => {
     // Arrange
     spyOn(newEventService, 'checkFormValidation').and.callThrough();
     component.newEventForm.get(NewEventFormField.title).setValue('');
+
     // Assert
     component.onSubmit();
 
