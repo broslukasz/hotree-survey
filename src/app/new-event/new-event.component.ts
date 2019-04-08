@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NewEvent } from './new-event';
 import { Router } from '@angular/router';
 import { NewEventService } from './new-event.service';
-import { NewEventFormFields } from './new-event-form-fields';
+import { NewEventFieldDescription, NewEventFormField } from './new-event-form-fields';
 
 @Component({
   selector: 'app-new-event',
@@ -12,8 +12,10 @@ import { NewEventFormFields } from './new-event-form-fields';
   providers: [NewEventService]
 })
 export class NewEventComponent {
+  public readonly formField = NewEventFormField;
+  public readonly fieldDescription = NewEventFieldDescription;
   newEventForm = this.fb.group({
-    title: ['', Validators.required]
+    [NewEventFormField.title]: ['', Validators.required]
   });
 
   constructor(
@@ -31,7 +33,7 @@ export class NewEventComponent {
 
     this.newEventService.logFormOutputToConsole(
       new NewEvent(
-        this.newEventForm.get('title').value
+        this.newEventForm.get(NewEventFormField.title).value
       )
     );
 

@@ -7,7 +7,7 @@
 
         <div class="form-group row hotree-new-survey-row">
           <label for="titleControl" class="col-sm-2 col-form-label hotree-form-label">
-            <span [class.label-is-invalid]="title.invalid && title.touched">Title</span>
+            <span [class.label-is-invalid]="title.invalid && title.touched">{{ fieldDescription[formField.title] }}</span>
             <span class="required-field-star"> *</span>
           </label>
           <div class="col-sm-8">
