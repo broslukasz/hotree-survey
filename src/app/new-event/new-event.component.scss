@@ -9,3 +9,7 @@
 .description-textarea {
   height: 140px;
 }
+
+::placeholder {
+  color: $font-color-placeholder;
+}
