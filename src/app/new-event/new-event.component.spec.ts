@@ -5,13 +5,19 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { instance, mock } from 'ts-mockito';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NewEventService } from './new-event.service';
+import { Router } from '@angular/router';
+import { NewEventFormField } from './new-event-form-fields';
 
 describe('NewEventComponent', () => {
   let component: NewEventComponent;
   let fixture: ComponentFixture<NewEventComponent>;
 
   const formBuilder: FormBuilder = new FormBuilder();
+  const validForm = {
+    title: 'Simple Title'
+  };
   let newEventService: NewEventService;
+  let router: Router;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -36,9 +42,7 @@ describe('NewEventComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NewEventComponent);
     component = fixture.componentInstance;
-    component.newEventForm = formBuilder.group({
-      title: ''
-    });
+    component.newEventForm = formBuilder.group(validForm);
     newEventService = fixture.debugElement.injector.get(NewEventService);
 
     fixture.detectChanges();
@@ -48,10 +52,9 @@ describe('NewEventComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  fit('should log output of the survey to the console', () => {
+  it('should log output of the survey to the console', () => {
     // Arrange
     spyOn(newEventService, 'logFormOutputToConsole').and.callThrough();
-    component.newEventForm.get('title').setValue('Sample Title');
     // Assert
     component.onSubmit();
 
@@ -59,9 +62,10 @@ describe('NewEventComponent', () => {
     expect(newEventService.logFormOutputToConsole).toHaveBeenCalled();
   });
 
-  fit('should check validation if untoched for submitted', () => {
+  it('should check validation if untoched for submitted', () => {
     // Arrange
     spyOn(newEventService, 'checkFormValidation').and.callThrough();
+    component.newEventForm.get(NewEventFormField.title).setValue('');
     // Assert
     component.onSubmit();
 
@@ -69,14 +73,24 @@ describe('NewEventComponent', () => {
     expect(newEventService.checkFormValidation).toHaveBeenCalled();
   });
 
-  fit('should not explicitly check validation if valid form submitted', () => {
+  it('should not explicitly check validation if valid form submitted', () => {
     // Arrange
     spyOn(newEventService, 'checkFormValidation').and.callThrough();
-    component.newEventForm.get('title').setValue('Sample Title');
     // Assert
     component.onSubmit();
 
     // Expect
     expect(newEventService.checkFormValidation).not.toHaveBeenCalled();
+  });
+
+  it('should navigate to summary if submitted form is valid', () => {
+    // Arrange
+    router = TestBed.get(Router);
+    spyOn(router, 'navigate');
+    // Assert
+    component.onSubmit();
+
+    // Expect
+    expect(router.navigate).toHaveBeenCalledWith(['summary']);
   });
 });
