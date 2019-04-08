@@ -9,7 +9,7 @@ export class NewEventDataService {
   private categoriesSource = new BehaviorSubject<Category[]>(jsonCategories);
   categories$ = this.categoriesSource.asObservable();
 
-  prepareCategoryForSend(value: any): number | undefined {
-    return value ? value : undefined;
+  prepareCategoryForSend(value: string): number | undefined {
+    return value.length > 0 ? Number(value) : undefined;
   }
 }
