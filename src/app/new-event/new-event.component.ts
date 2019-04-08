@@ -23,7 +23,7 @@ export class NewEventComponent implements OnInit {
     [NewEventFormField.category]: ['']
   });
 
-  private categories: Observable<Category[]>;
+  categories: Observable<Category[]>;
 
   constructor(
     private fb: FormBuilder,
