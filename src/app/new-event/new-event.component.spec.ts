@@ -7,6 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NewEventService } from './new-event.service';
 import { Router } from '@angular/router';
 import { NewEventFormField } from './new-event-form-fields';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { SummaryComponent } from '../summary/summary.component';
 
 describe('NewEventComponent', () => {
   let component: NewEventComponent;
@@ -22,14 +24,20 @@ describe('NewEventComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewEventComponent ],
+      declarations: [
+        NewEventComponent,
+        SummaryComponent
+      ],
       imports: [
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+          {path: 'summary', component: SummaryComponent}
+        ]),
         ReactiveFormsModule
       ],
       providers: [
         {provide: FormBuilder, useValue: instance(mock(FormBuilder))}
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).overrideComponent(NewEventComponent, {
       set: {
         providers: [
