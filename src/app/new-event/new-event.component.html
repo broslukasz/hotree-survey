@@ -75,19 +75,17 @@
         <hr/>
 
         <app-hotree-form-field [required]="true" [formField]="coordinator" [formFieldName]="formField.coordinator">
-          <select class="form-control" [class.hotree-option-text]="coordinator.pristine"
+          <select class="form-control"
                   formControlName="coordinator">
               <optgroup label="Me">
-                <ng-container *ngFor="let singleCoordinator of (coordinators | async); let i">
-                  <option *ngIf="singleCoordinator.id === 3" [ngValue]="singleCoordinator" [selected]="singleCoordinator.id === 3">
-                    {{singleCoordinator.name + ' ' + singleCoordinator.lastname}}
-                  </option>
-                </ng-container>
+                <option [selected]="true" [ngValue]="loggedUser">
+                  {{loggedUser?.name + ' ' + loggedUser?.lastname}}
+                </option>
               </optgroup>
               <optgroup label="Others">
                 <ng-container *ngFor="let singleCoordinator of (coordinators | async)">
                   {{ singleCoordinator }}
-                  <option *ngIf="singleCoordinator.id !== 3" [ngValue]="singleCoordinator">
+                  <option *ngIf="singleCoordinator.id !== loggedUser?.id" [ngValue]="singleCoordinator">
                     {{singleCoordinator.name + ' ' + singleCoordinator.lastname}}
                   </option>
                 </ng-container>

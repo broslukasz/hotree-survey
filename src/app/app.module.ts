@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HotreeTooltipComponent } from './new-event/hotree-tooltip/hotree-tooltip.component';
 import { HotreeFormFieldComponent } from './new-event/hotree-form-field/hotree-form-field.component';
+import { AuthModule } from '../auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HotreeFormFieldComponent } from './new-event/hotree-form-field/hotree-f
     HotreeFormFieldComponent
   ],
   imports: [
+    AuthModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule.forRoot(),

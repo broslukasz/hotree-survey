@@ -10,6 +10,7 @@ import { NewEventFormField } from './new-event-form-fields';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { SummaryComponent } from '../summary/summary.component';
 import { NewEventDataService } from './services/new-event-data.service';
+import { AuthService } from '../../auth/auth.service';
 
 describe('NewEventComponent', () => {
   let component: NewEventComponent;
@@ -41,7 +42,8 @@ describe('NewEventComponent', () => {
         ReactiveFormsModule
       ],
       providers: [
-        {provide: FormBuilder, useValue: instance(mock(FormBuilder))}
+        {provide: FormBuilder, useValue: instance(mock(FormBuilder))},
+        {provide: AuthService, useValue: instance(mock(AuthService))}
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).overrideComponent(NewEventComponent, {

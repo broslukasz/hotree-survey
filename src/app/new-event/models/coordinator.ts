@@ -1,8 +1,11 @@
-export interface Coordinator {
-  id: number;
-  name: string;
-  lastname: string;
-  email: string;
+export class Coordinator {
+  constructor(
+    public id: number,
+    public name: string,
+    public lastname: string,
+    public email: string
+  ) {}
+
 }
 
 export class CoordinatorDtoRequest {

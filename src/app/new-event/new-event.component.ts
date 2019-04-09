@@ -8,6 +8,7 @@ import { NewEventDataService } from './services/new-event-data.service';
 import { Observable } from 'rxjs';
 import { Category } from './models/category';
 import { Coordinator } from './models/coordinator';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-new-event',
@@ -25,23 +26,26 @@ export class NewEventComponent implements OnInit {
     [NewEventFormField.payment]: [false],
     [NewEventFormField.event_fee]: null,
     [NewEventFormField.reward]: null,
-    [NewEventFormField.coordinator]: ['', Validators.required],
+    [NewEventFormField.coordinator]: [this.authService.user$.getValue(), Validators.required],
   });
 
   categories: Observable<Category[]>;
   coordinators: Observable<Coordinator[]>;
+  loggedUser: Coordinator;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private newEventService: NewEventService,
-    private newEventDataService: NewEventDataService
+    private newEventDataService: NewEventDataService,
+    private authService: AuthService
   ) {
   }
 
   ngOnInit(): void {
     this.categories = this.newEventDataService.categories$;
     this.coordinators = this.newEventDataService.coordinators$;
+    this.loggedUser = this.authService.user$.getValue();
 
     // this.populateTestData();
   }
@@ -87,7 +91,7 @@ export class NewEventComponent implements OnInit {
       [NewEventFormField.payment]: false,
       [NewEventFormField.event_fee]: null,
       [NewEventFormField.reward]: null,
-      [NewEventFormField.coordinator]: '',
+      [NewEventFormField.coordinator]: this.authService.user$.getValue,
 
     });
   }
