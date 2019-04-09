@@ -1,9 +1,14 @@
 @import "~src/variables";
 
+section {
+  margin-bottom: 1.5rem;
+}
+
 .publish-button {
   display: flex;
   justify-content: center;
   margin-top: 24px;
+  margin-bottom: 1.5rem;
 }
 
 .description-textarea {

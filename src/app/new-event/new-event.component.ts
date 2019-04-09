@@ -39,7 +39,7 @@ export class NewEventComponent implements OnInit {
   ngOnInit(): void {
     this.categories = this.newEventDataService.categories$;
 
-    // this.populateTestData();
+    this.populateTestData();
   }
 
   onSubmit(): void {
