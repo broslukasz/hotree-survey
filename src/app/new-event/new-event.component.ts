@@ -48,8 +48,6 @@ export class NewEventComponent implements OnInit {
     this.categories = this.newEventDataService.categories$;
     this.coordinators = this.newEventDataService.coordinators$;
     this.loggedUser = this.authService.user$.getValue();
-
-    // this.populateTestData();
   }
 
   onSubmit(): void {
@@ -90,21 +88,6 @@ export class NewEventComponent implements OnInit {
   get coordinator() { return this.newEventForm.get(NewEventFormField.coordinator); }
   get email() { return this.newEventForm.get(NewEventFormField.email); }
   get duration() { return this.newEventForm.get(NewEventFormField.duration); }
-
-  private populateTestData(): void {
-    this.newEventForm.patchValue({
-      [NewEventFormField.title]: 'Sample title',
-      [NewEventFormField.description]: 'Sample description',
-      [NewEventFormField.category]: null,
-      [NewEventFormField.payment]: false,
-      [NewEventFormField.event_fee]: null,
-      [NewEventFormField.reward]: null,
-      [NewEventFormField.coordinator]: this.authService.user$.getValue,
-      [NewEventFormField.email]: '',
-      [NewEventFormField.duration]: null,
-
-    });
-  }
 
   resetEventFee() {
     this.event_fee.reset();
