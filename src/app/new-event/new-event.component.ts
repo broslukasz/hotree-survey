@@ -20,8 +20,9 @@ export class NewEventComponent implements OnInit {
   newEventForm = this.fb.group({
     [NewEventFormField.title]: ['' as string, Validators.required],
     [NewEventFormField.description]: ['', [Validators.required, Validators.maxLength(140)]],
-    [NewEventFormField.category]: [undefined],
-    [NewEventFormField.payment]: [false]
+    [NewEventFormField.category]: undefined,
+    [NewEventFormField.payment]: [false],
+    [NewEventFormField.event_fee]: undefined,
   });
 
   categories: Observable<Category[]>;
@@ -37,7 +38,7 @@ export class NewEventComponent implements OnInit {
   ngOnInit(): void {
     this.categories = this.newEventDataService.categories$;
 
-    // this.populateTestData();
+    this.populateTestData();
   }
 
   onSubmit(): void {
@@ -54,16 +55,18 @@ export class NewEventComponent implements OnInit {
           this.newEventForm.get(NewEventFormField.category).value
         ),
         this.newEventForm.get(NewEventFormField.payment).value,
+        this.newEventForm.get(NewEventFormField.event_fee).value,
       )
     );
 
-    this.router.navigate(['summary']);
+    // this.router.navigate(['summary']);
   }
 
   get title() { return this.newEventForm.get(NewEventFormField.title); }
   get description() { return this.newEventForm.get(NewEventFormField.description); }
   get category() { return this.newEventForm.get(NewEventFormField.category); }
   get payment() { return this.newEventForm.get(NewEventFormField.payment); }
+  get event_fee() { return this.newEventForm.get(NewEventFormField.event_fee); }
 
   private populateTestData(): void {
     this.newEventForm.patchValue({
@@ -71,7 +74,12 @@ export class NewEventComponent implements OnInit {
       [NewEventFormField.description]: 'Sample description',
       [NewEventFormField.category]: '',
       [NewEventFormField.payment]: false,
+      [NewEventFormField.event_fee]: undefined,
 
     });
+  }
+
+  resetEventFee() {
+    this.event_fee.reset();
   }
 }

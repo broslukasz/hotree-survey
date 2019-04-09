@@ -6,13 +6,13 @@
         <hr/>
 
         <app-hotree-form-field [required]="true" [formField]="title" [formFieldName]="formField.title">
-          <input type="text" [formControlName]="formField.title" required
+          <input type="text" [formControlName]="formField.title"
                  class="form-control" [class.is-invalid]="title.invalid && title.touched" [id]="formField.title + 'Control'"
                  placeholder="Make it short and clear">
         </app-hotree-form-field>
 
         <app-hotree-form-field [required]="true" [formField]="description" [formFieldName]="formField.description">
-            <textarea type="text" [formControlName]="formField.description" maxlength="140" required
+            <textarea type="text" [formControlName]="formField.description" maxlength="140"
                                 class="form-control description-textarea" [class.is-invalid]="description.invalid && description.touched" [id]="formField.description + 'Control'"
                                 placeholder="Write about your event, be creative"></textarea>
             <div class="character-counter hotree-field-tip-description">
@@ -35,13 +35,23 @@
         </app-hotree-form-field>
 
         <app-hotree-form-field [formField]="payment" [formFieldName]="formField.payment">
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" formControlName="payment" id="freeEvent" [value]="false" class="custom-control-input">
-            <label class="custom-control-label" for="freeEvent">Free event</label>
+          <div class="payment-fields">
+            <div (click)="resetEventFee()" class="custom-control custom-radio custom-control-inline">
+              <input type="radio" formControlName="payment" id="freeEvent" [value]="false" class="custom-control-input hotree-radio-button-input">
+              <label class="custom-control-label hotree-radio-button-label" for="freeEvent">Free event</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" formControlName="payment" id="paidEvent" [value]="true" class="custom-control-input hotree-radio-button-input">
+              <label class="custom-control-label hotree-radio-button-label" for="paidEvent">Paid event</label>
+            </div>
           </div>
-          <div class="custom-control custom-radio custom-control-inline">
-            <input type="radio" formControlName="payment" id="paidEvent" [value]="true" class="custom-control-input">
-            <label class="custom-control-label" for="paidEvent">Paid event</label>
+          <div *ngIf="payment.value" class="custom-control-inline">
+            <input type="number" [formControlName]="formField.event_fee"
+                   class="form-control event-fee" [class.is-invalid]="event_fee.invalid && event_fee.touched" [id]="formField.event_fee + 'Control'"
+                   placeholder="Fee">
+            <div class="dollar-sign">
+              <span>$</span>
+            </div>
           </div>
         </app-hotree-form-field>
 

@@ -28,7 +28,7 @@ app-new-event, app-summary {
 }
 
 h5 {
-  color: $heading-blue01;
+  color: $hotree-blue01;
 }
 
 .hotree-new-survey-row {
@@ -55,5 +55,16 @@ h5 {
   color: $font-color-placeholder;
   option {
     font-size: $font-size-normal;
+  }
+}
+
+.hotree-radio-button-input {
+  &:checked {
+    &~.hotree-radio-button-label {
+      &::before {
+        border-color: $hotree-blue02;
+        background-color: $hotree-blue02;
+      }
+    }
   }
 }
