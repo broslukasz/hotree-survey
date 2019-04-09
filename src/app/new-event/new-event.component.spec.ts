@@ -25,7 +25,8 @@ describe('NewEventComponent', () => {
     event_fee: null,
     reward: null,
     coordinator: '',
-    email: ''
+    email: '',
+    duration: null,
   };
   let newEventService: NewEventService;
   let newEventDataService: NewEventDataService;

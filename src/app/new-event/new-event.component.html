@@ -43,7 +43,7 @@
             <div class="custom-control custom-radio custom-control-inline">
               <input type="radio" formControlName="payment" id="paidEvent" [value]="true" class="custom-control-input hotree-radio-button-input">
               <label class="custom-control-label hotree-radio-button-label" for="paidEvent">Paid event</label>
-            </div>
+            </div>p
           </div>
           <div *ngIf="payment.value" class="custom-control-inline">
             <input type="number" [formControlName]="formField.event_fee"
@@ -69,7 +69,7 @@
       </div>
     </section>
 
-    <div class="card">
+    <section class="card">
       <div class="card-body hotree-default-indent">
         <h5 class="card-title">Coordinator</h5>
         <hr/>
@@ -78,14 +78,14 @@
           <select class="form-control"
                   formControlName="coordinator">
               <optgroup label="Me">
-                <option [selected]="true" [ngValue]="loggedUser">
+                <option [selected]="true">
                   {{loggedUser?.name + ' ' + loggedUser?.lastname}}
                 </option>
               </optgroup>
               <optgroup label="Others">
                 <ng-container *ngFor="let singleCoordinator of (coordinators | async)">
                   {{ singleCoordinator }}
-                  <option *ngIf="singleCoordinator.id !== loggedUser?.id" [ngValue]="singleCoordinator">
+                  <option *ngIf="singleCoordinator.id !== loggedUser?.id">
                     {{singleCoordinator.name + ' ' + singleCoordinator.lastname}}
                   </option>
                 </ng-container>
@@ -104,7 +104,26 @@
                  placeholder="Email">
         </app-hotree-form-field>
       </div>
-    </div>
+    </section>
+
+    <section class="card">
+      <div class="card-body hotree-default-indent">
+        <h5 class="card-title">When</h5>
+        <hr/>
+
+        <app-hotree-form-field [formField]="duration" [formFieldName]="formField.duration">
+          <div class="custom-control-inline">
+            <input type="number" [formControlName]="formField.duration"
+                   class="form-control hotree-small-input" [class.is-invalid]="duration.invalid && duration.touched" [id]="formField.duration + 'Control'"
+                   placeholder="Number">
+            <div class="hour-text">
+              <span>hour</span>
+            </div>
+          </div>
+        </app-hotree-form-field>
+
+      </div>
+    </section>
 
     <div class="publish-button">
       <button

@@ -28,6 +28,7 @@ export class NewEventComponent implements OnInit {
     [NewEventFormField.reward]: null,
     [NewEventFormField.coordinator]: [this.authService.user$.getValue(), Validators.required],
     [NewEventFormField.email]: [null],
+    [NewEventFormField.duration]: [null],
   });
 
   categories: Observable<Category[]>;
@@ -70,7 +71,10 @@ export class NewEventComponent implements OnInit {
         this.newEventDataService.prepareCoordinatorForSend(
           this.newEventForm.get(NewEventFormField.coordinator).value.id,
           this.newEventForm.get(NewEventFormField.email).value,
-        )
+        ),
+        this.newEventDataService.calculateDurationInSeconds(
+          this.newEventForm.get(NewEventFormField.duration).value
+        ),
       )
     );
 
@@ -85,6 +89,7 @@ export class NewEventComponent implements OnInit {
   get reward() { return this.newEventForm.get(NewEventFormField.reward); }
   get coordinator() { return this.newEventForm.get(NewEventFormField.coordinator); }
   get email() { return this.newEventForm.get(NewEventFormField.email); }
+  get duration() { return this.newEventForm.get(NewEventFormField.duration); }
 
   private populateTestData(): void {
     this.newEventForm.patchValue({
@@ -96,6 +101,7 @@ export class NewEventComponent implements OnInit {
       [NewEventFormField.reward]: null,
       [NewEventFormField.coordinator]: this.authService.user$.getValue,
       [NewEventFormField.email]: '',
+      [NewEventFormField.duration]: null,
 
     });
   }
