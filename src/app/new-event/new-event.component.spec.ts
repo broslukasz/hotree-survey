@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewEventComponent } from './new-event.component';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { instance, mock } from 'ts-mockito';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NewEventService } from './services/new-event.service';
@@ -17,9 +17,12 @@ describe('NewEventComponent', () => {
 
   const formBuilder: FormBuilder = new FormBuilder();
   const validForm = {
-    title: 'Simple title',
-    description: 'Sample description',
-    category: [['category1', 'category2']]
+    title: ['Simple title', Validators.required],
+    description: ['Sample description', Validators.required],
+    category: [['category1', 'category2']],
+    payment: true,
+    event_fee: null
+
   };
   let newEventService: NewEventService;
   let router: Router;
@@ -105,5 +108,15 @@ describe('NewEventComponent', () => {
 
     // Expect
     expect(router.navigate).toHaveBeenCalledWith(['summary']);
+  });
+
+  it('should reset event fee when free event clicked', () => {
+    // Arrange
+    component.newEventForm.get(NewEventFormField.event_fee).setValue(10);
+    // Assert
+    component.resetEventFee();
+
+    // Expect
+    expect(component.event_fee.value).toBe(null);
   });
 });

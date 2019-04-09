@@ -18,11 +18,11 @@ import { Category } from './models/category';
 export class NewEventComponent implements OnInit {
   public readonly formField = NewEventFormField;
   newEventForm = this.fb.group({
-    [NewEventFormField.title]: ['' as string, Validators.required],
+    [NewEventFormField.title]: ['', Validators.required],
     [NewEventFormField.description]: ['', [Validators.required, Validators.maxLength(140)]],
-    [NewEventFormField.category]: undefined,
+    [NewEventFormField.category]: null,
     [NewEventFormField.payment]: [false],
-    [NewEventFormField.event_fee]: undefined,
+    [NewEventFormField.event_fee]: null,
   });
 
   categories: Observable<Category[]>;
@@ -38,7 +38,7 @@ export class NewEventComponent implements OnInit {
   ngOnInit(): void {
     this.categories = this.newEventDataService.categories$;
 
-    this.populateTestData();
+    // this.populateTestData();
   }
 
   onSubmit(): void {
@@ -59,7 +59,7 @@ export class NewEventComponent implements OnInit {
       )
     );
 
-    // this.router.navigate(['summary']);
+    this.router.navigate(['summary']);
   }
 
   get title() { return this.newEventForm.get(NewEventFormField.title); }
