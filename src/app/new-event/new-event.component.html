@@ -47,10 +47,21 @@
           </div>
           <div *ngIf="payment.value" class="custom-control-inline">
             <input type="number" [formControlName]="formField.event_fee"
-                   class="form-control event-fee" [class.is-invalid]="event_fee.invalid && event_fee.touched" [id]="formField.event_fee + 'Control'"
+                   class="form-control hotree-small-input" [class.is-invalid]="event_fee.invalid && event_fee.touched" [id]="formField.event_fee + 'Control'"
                    placeholder="Fee">
             <div class="dollar-sign">
               <span>$</span>
+            </div>
+          </div>
+        </app-hotree-form-field>
+
+        <app-hotree-form-field [formField]="reward" [formFieldName]="formField.reward">
+          <div class="custom-control-inline">
+            <input type="number" [formControlName]="formField.reward"
+                   class="form-control hotree-small-input" [class.is-invalid]="reward.invalid && reward.touched" [id]="formField.reward + 'Control'"
+                   placeholder="Number">
+            <div class="dollar-sign">
+              <span>Reward points for attendance</span>
             </div>
           </div>
         </app-hotree-form-field>

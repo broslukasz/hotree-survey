@@ -23,6 +23,7 @@ export class NewEventComponent implements OnInit {
     [NewEventFormField.category]: null,
     [NewEventFormField.payment]: [false],
     [NewEventFormField.event_fee]: null,
+    [NewEventFormField.reward]: null
   });
 
   categories: Observable<Category[]>;
@@ -56,6 +57,7 @@ export class NewEventComponent implements OnInit {
         ),
         this.newEventForm.get(NewEventFormField.payment).value,
         this.newEventForm.get(NewEventFormField.event_fee).value,
+        this.newEventForm.get(NewEventFormField.reward).value,
       )
     );
 
@@ -67,14 +69,16 @@ export class NewEventComponent implements OnInit {
   get category() { return this.newEventForm.get(NewEventFormField.category); }
   get payment() { return this.newEventForm.get(NewEventFormField.payment); }
   get event_fee() { return this.newEventForm.get(NewEventFormField.event_fee); }
+  get reward() { return this.newEventForm.get(NewEventFormField.reward); }
 
   private populateTestData(): void {
     this.newEventForm.patchValue({
       [NewEventFormField.title]: 'Sample title',
       [NewEventFormField.description]: 'Sample description',
-      [NewEventFormField.category]: '',
+      [NewEventFormField.category]: null,
       [NewEventFormField.payment]: false,
-      [NewEventFormField.event_fee]: undefined,
+      [NewEventFormField.event_fee]: null,
+      [NewEventFormField.reward]: null,
 
     });
   }
