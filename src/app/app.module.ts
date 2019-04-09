@@ -11,23 +11,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HotreeTooltipComponent } from './new-event/hotree-tooltip/hotree-tooltip.component';
 import { HotreeFormFieldComponent } from './new-event/hotree-form-field/hotree-form-field.component';
 import { AuthModule } from '../auth/auth.module';
+import { NewEventModule } from './new-event/new-event.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewEventComponent,
-    SummaryComponent,
-    HotreeTooltipComponent,
-    HotreeFormFieldComponent
+    SummaryComponent
   ],
   imports: [
     AuthModule,
     BrowserModule,
     AppRoutingModule,
     CoreModule.forRoot(),
-    ReactiveFormsModule,
-    FormsModule,
-    NgbModule
+    NgbModule,
+    NewEventModule
   ],
   providers: [],
   bootstrap: [AppComponent]
