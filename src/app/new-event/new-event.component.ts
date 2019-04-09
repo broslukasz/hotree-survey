@@ -18,9 +18,10 @@ import { Category } from './models/category';
 export class NewEventComponent implements OnInit {
   public readonly formField = NewEventFormField;
   newEventForm = this.fb.group({
-    [NewEventFormField.title]: ['', Validators.required],
+    [NewEventFormField.title]: ['' as string, Validators.required],
     [NewEventFormField.description]: ['', [Validators.required, Validators.maxLength(140)]],
-    [NewEventFormField.category]: ['']
+    [NewEventFormField.category]: [undefined],
+    [NewEventFormField.payment]: [false]
   });
 
   categories: Observable<Category[]>;
@@ -35,6 +36,8 @@ export class NewEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories = this.newEventDataService.categories$;
+
+    // this.populateTestData();
   }
 
   onSubmit(): void {
@@ -49,7 +52,8 @@ export class NewEventComponent implements OnInit {
         this.newEventForm.get(NewEventFormField.description).value,
         this.newEventDataService.prepareCategoryForSend(
           this.newEventForm.get(NewEventFormField.category).value
-        )
+        ),
+        this.newEventForm.get(NewEventFormField.payment).value,
       )
     );
 
@@ -59,4 +63,15 @@ export class NewEventComponent implements OnInit {
   get title() { return this.newEventForm.get(NewEventFormField.title); }
   get description() { return this.newEventForm.get(NewEventFormField.description); }
   get category() { return this.newEventForm.get(NewEventFormField.category); }
+  get payment() { return this.newEventForm.get(NewEventFormField.payment); }
+
+  private populateTestData(): void {
+    this.newEventForm.patchValue({
+      [NewEventFormField.title]: 'Sample title',
+      [NewEventFormField.description]: 'Sample description',
+      [NewEventFormField.category]: '',
+      [NewEventFormField.payment]: false,
+
+    });
+  }
 }

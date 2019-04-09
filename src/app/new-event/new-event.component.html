@@ -24,14 +24,24 @@
         <app-hotree-form-field [formField]="category" [formFieldName]="formField.category">
           <select class="form-control" [class.hotree-option-text]="category.pristine"
                   formControlName="category">
-            <option value=""
-                    hidden>Select category (skills, interest, location)</option>
+            <option hidden>Select category (skills, interest, location)</option>
             <option *ngFor="let singleCategory of (categories | async)" [value]="singleCategory.id">{{singleCategory.name}}</option>
           </select>
           <div class="character-counter hotree-field-tip-description">
             <small [id]="formField.category + 'Help'" class="form-text">
               Describes topic and people who should be interested in this event
             </small>
+          </div>
+        </app-hotree-form-field>
+
+        <app-hotree-form-field [formField]="payment" [formFieldName]="formField.payment">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" formControlName="payment" id="freeEvent" [value]="false" class="custom-control-input">
+            <label class="custom-control-label" for="freeEvent">Free event</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" formControlName="payment" id="paidEvent" [value]="true" class="custom-control-input">
+            <label class="custom-control-label" for="paidEvent">Paid event</label>
           </div>
         </app-hotree-form-field>
 
