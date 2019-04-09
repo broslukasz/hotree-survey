@@ -21,8 +21,8 @@ describe('NewEventComponent', () => {
     description: ['Sample description', Validators.required],
     category: [['category1', 'category2']],
     payment: true,
-    event_fee: null
-
+    event_fee: null,
+    reward: null
   };
   let newEventService: NewEventService;
   let router: Router;
