@@ -22,7 +22,8 @@ describe('NewEventComponent', () => {
     category: [['category1', 'category2']],
     payment: true,
     event_fee: null,
-    reward: null
+    reward: null,
+    coordinator: ''
   };
   let newEventService: NewEventService;
   let router: Router;

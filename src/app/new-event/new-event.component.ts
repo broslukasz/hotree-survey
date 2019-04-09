@@ -7,6 +7,7 @@ import { NewEventFormField } from './new-event-form-fields';
 import { NewEventDataService } from './services/new-event-data.service';
 import { Observable } from 'rxjs';
 import { Category } from './models/category';
+import { Coordinator } from './models/coordinator';
 
 @Component({
   selector: 'app-new-event',
@@ -23,10 +24,12 @@ export class NewEventComponent implements OnInit {
     [NewEventFormField.category]: null,
     [NewEventFormField.payment]: [false],
     [NewEventFormField.event_fee]: null,
-    [NewEventFormField.reward]: null
+    [NewEventFormField.reward]: null,
+    [NewEventFormField.coordinator]: ['', Validators.required],
   });
 
   categories: Observable<Category[]>;
+  coordinators: Observable<Coordinator[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -38,8 +41,9 @@ export class NewEventComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories = this.newEventDataService.categories$;
+    this.coordinators = this.newEventDataService.coordinators$;
 
-    this.populateTestData();
+    // this.populateTestData();
   }
 
   onSubmit(): void {
@@ -58,6 +62,9 @@ export class NewEventComponent implements OnInit {
         this.newEventForm.get(NewEventFormField.payment).value,
         this.newEventForm.get(NewEventFormField.event_fee).value,
         this.newEventForm.get(NewEventFormField.reward).value,
+        this.newEventDataService.prepareCoordinatorForSend(
+          this.newEventForm.get(NewEventFormField.coordinator).value,
+        )
       )
     );
 
@@ -70,6 +77,7 @@ export class NewEventComponent implements OnInit {
   get payment() { return this.newEventForm.get(NewEventFormField.payment); }
   get event_fee() { return this.newEventForm.get(NewEventFormField.event_fee); }
   get reward() { return this.newEventForm.get(NewEventFormField.reward); }
+  get coordinator() { return this.newEventForm.get(NewEventFormField.coordinator); }
 
   private populateTestData(): void {
     this.newEventForm.patchValue({
@@ -79,6 +87,7 @@ export class NewEventComponent implements OnInit {
       [NewEventFormField.payment]: false,
       [NewEventFormField.event_fee]: null,
       [NewEventFormField.reward]: null,
+      [NewEventFormField.coordinator]: '',
 
     });
   }

@@ -21,7 +21,7 @@
             </div>
         </app-hotree-form-field>
 
-        <app-hotree-form-field [formField]="category" [formFieldName]="formField.category">
+        <app-hotree-form-field [formField]="category" [formFieldName]="formField.category" >
           <select class="form-control" [class.hotree-option-text]="category.pristine"
                   formControlName="category">
             <option hidden>Select category (skills, interest, location)</option>
@@ -73,6 +73,32 @@
       <div class="card-body hotree-default-indent">
         <h5 class="card-title">Coordinator</h5>
         <hr/>
+
+        <app-hotree-form-field [required]="true" [formField]="coordinator" [formFieldName]="formField.coordinator">
+          <select class="form-control" [class.hotree-option-text]="coordinator.pristine"
+                  formControlName="coordinator">
+              <optgroup label="Me">
+                <ng-container *ngFor="let singleCoordinator of (coordinators | async); let i">
+                  <option *ngIf="singleCoordinator.id === 3" [selected]="singleCoordinator.id === 3" [ngValue]="singleCoordinator" [selected]="singleCoordinator.id === 3">
+                    {{singleCoordinator.name + ' ' + singleCoordinator.lastname}}
+                  </option>
+                </ng-container>
+              </optgroup>
+              <optgroup label="Others">
+                <ng-container *ngFor="let singleCoordinator of (coordinators | async)">
+                  {{ singleCoordinator }}
+                  <option [selected]="false" *ngIf="singleCoordinator.id !== 3" [ngValue]="singleCoordinator">
+                    {{singleCoordinator.name + ' ' + singleCoordinator.lastname}}
+                  </option>
+                </ng-container>
+              </optgroup>
+          </select>
+          <div class="character-counter hotree-field-tip-description">
+            <small [id]="formField.category + 'Help'" class="form-text">
+              Describes topic and people who should be interested in this event
+            </small>
+          </div>
+        </app-hotree-form-field>
       </div>
     </div>
 

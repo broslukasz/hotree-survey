@@ -1,3 +1,5 @@
+import { CoordinatorDtoRequest } from './coordinator';
+
 export class NewEvent {
   constructor(
     public title: string,
@@ -5,6 +7,7 @@ export class NewEvent {
     public category_id: number,
     public paid_event: boolean,
     public event_fee: number,
-    public reward: number
+    public reward: number,
+    public coordinator: CoordinatorDtoRequest
   ) { }
 }
