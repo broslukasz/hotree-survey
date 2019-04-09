@@ -6,7 +6,7 @@ import jsonEmployes from '../../data/employes.json';
 
 @Injectable()
 export class AuthService {
-  public user$: BehaviorSubject<Coordinator> = new BehaviorSubject(new Coordinator(
+  user$: BehaviorSubject<Coordinator> = new BehaviorSubject(new Coordinator(
     jsonEmployes[3].id,
     jsonEmployes[3].name,
     jsonEmployes[3].lastname,

@@ -27,6 +27,7 @@ export class NewEventComponent implements OnInit {
     [NewEventFormField.event_fee]: null,
     [NewEventFormField.reward]: null,
     [NewEventFormField.coordinator]: [this.authService.user$.getValue(), Validators.required],
+    [NewEventFormField.email]: [null],
   });
 
   categories: Observable<Category[]>;
@@ -67,7 +68,8 @@ export class NewEventComponent implements OnInit {
         this.newEventForm.get(NewEventFormField.event_fee).value,
         this.newEventForm.get(NewEventFormField.reward).value,
         this.newEventDataService.prepareCoordinatorForSend(
-          this.newEventForm.get(NewEventFormField.coordinator).value,
+          this.newEventForm.get(NewEventFormField.coordinator).value.id,
+          this.newEventForm.get(NewEventFormField.email).value,
         )
       )
     );
@@ -82,6 +84,7 @@ export class NewEventComponent implements OnInit {
   get event_fee() { return this.newEventForm.get(NewEventFormField.event_fee); }
   get reward() { return this.newEventForm.get(NewEventFormField.reward); }
   get coordinator() { return this.newEventForm.get(NewEventFormField.coordinator); }
+  get email() { return this.newEventForm.get(NewEventFormField.email); }
 
   private populateTestData(): void {
     this.newEventForm.patchValue({
@@ -92,6 +95,7 @@ export class NewEventComponent implements OnInit {
       [NewEventFormField.event_fee]: null,
       [NewEventFormField.reward]: null,
       [NewEventFormField.coordinator]: this.authService.user$.getValue,
+      [NewEventFormField.email]: '',
 
     });
   }

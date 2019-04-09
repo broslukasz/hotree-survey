@@ -19,7 +19,7 @@ export class NewEventDataService {
     return value ? Number(value) : undefined;
   }
 
-  prepareCoordinatorForSend(coordinator: Coordinator): CoordinatorDtoRequest {
-    return new CoordinatorDtoRequest(coordinator.id, coordinator.email);
+  prepareCoordinatorForSend(coordinatorId: number, email: string): CoordinatorDtoRequest {
+    return new CoordinatorDtoRequest(coordinatorId, email);
   }
 }

@@ -24,9 +24,12 @@ describe('NewEventComponent', () => {
     payment: true,
     event_fee: null,
     reward: null,
-    coordinator: ''
+    coordinator: '',
+    email: ''
   };
   let newEventService: NewEventService;
+  let newEventDataService: NewEventDataService;
+  let authService: AuthService;
   let router: Router;
 
   beforeEach(async(() => {
@@ -43,14 +46,14 @@ describe('NewEventComponent', () => {
       ],
       providers: [
         {provide: FormBuilder, useValue: instance(mock(FormBuilder))},
-        {provide: AuthService, useValue: instance(mock(AuthService))}
+        AuthService
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).overrideComponent(NewEventComponent, {
       set: {
         providers: [
           { provide: NewEventService, useValue: instance(mock(NewEventService))},
-          { provide: NewEventDataService, useValue: instance(mock(NewEventDataService))}
+          { provide: NewEventDataService, useValue: instance(mock(NewEventDataService))},
         ]
       }
     })
@@ -62,6 +65,8 @@ describe('NewEventComponent', () => {
     component = fixture.componentInstance;
     component.newEventForm = formBuilder.group(validForm);
     newEventService = fixture.debugElement.injector.get(NewEventService);
+    newEventDataService = fixture.debugElement.injector.get(NewEventDataService);
+    authService = TestBed.get(AuthService);
 
     fixture.detectChanges();
   });

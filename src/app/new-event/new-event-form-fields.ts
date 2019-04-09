@@ -5,7 +5,8 @@ export enum NewEventFormField {
   payment = 'payment',
   event_fee = 'event_fee',
   reward = 'reward',
-  coordinator = 'coordinator'
+  coordinator = 'coordinator',
+  email = 'email',
 }
 
 export enum NewEventFieldDescription {
@@ -15,5 +16,6 @@ export enum NewEventFieldDescription {
   payment = 'Payment',
   event_fee = 'Fee',
   reward = 'Reward',
-  coordinator = 'Responsible'
+  coordinator = 'Responsible',
+  email = 'Email'
 }
