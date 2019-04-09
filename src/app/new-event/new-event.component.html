@@ -79,7 +79,7 @@
                   formControlName="coordinator">
               <optgroup label="Me">
                 <ng-container *ngFor="let singleCoordinator of (coordinators | async); let i">
-                  <option *ngIf="singleCoordinator.id === 3" [selected]="singleCoordinator.id === 3" [ngValue]="singleCoordinator" [selected]="singleCoordinator.id === 3">
+                  <option *ngIf="singleCoordinator.id === 3" [ngValue]="singleCoordinator" [selected]="singleCoordinator.id === 3">
                     {{singleCoordinator.name + ' ' + singleCoordinator.lastname}}
                   </option>
                 </ng-container>
@@ -87,7 +87,7 @@
               <optgroup label="Others">
                 <ng-container *ngFor="let singleCoordinator of (coordinators | async)">
                   {{ singleCoordinator }}
-                  <option [selected]="false" *ngIf="singleCoordinator.id !== 3" [ngValue]="singleCoordinator">
+                  <option *ngIf="singleCoordinator.id !== 3" [ngValue]="singleCoordinator">
                     {{singleCoordinator.name + ' ' + singleCoordinator.lastname}}
                   </option>
                 </ng-container>
