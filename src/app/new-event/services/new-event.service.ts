@@ -1,14 +1,19 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { AbstractControl, FormGroup, Validators } from '@angular/forms';
 import { NewEvent } from '../models/new-event';
 import { NewEventFormField } from '../new-event-form-fields';
 import { CoordinatorDtoRequest } from '../models/coordinator';
 import { isNull } from 'util';
+import { Subscription } from 'rxjs';
 
 @Injectable()
-export class NewEventService {
+export class NewEventService implements OnDestroy {
+  private dynamicValidatorsSubscription: Subscription;
 
   constructor() { }
+
+  ngOnDestroy(): void {
+  }
 
   logFormOutputToConsole(newEventForm: FormGroup): void {
     const newEventRequest: NewEvent = new NewEvent(
@@ -56,7 +61,8 @@ export class NewEventService {
   }
 
   setDynamicValidators(newEventForm: FormGroup): void {
-    newEventForm.get([NewEventFormField.payment]).valueChanges.subscribe(value => {
+    this.dynamicValidatorsSubscription = newEventForm.get([NewEventFormField.payment])
+        .valueChanges.subscribe(value => {
       if (value) {
         newEventForm.get([NewEventFormField.event_fee]).setValidators([Validators.required]);
         return;
