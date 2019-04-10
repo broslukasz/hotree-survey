@@ -34,7 +34,7 @@
           </div>
         </app-hotree-form-field>
 
-        <app-hotree-form-field [formField]="payment" [formFieldName]="formField.payment">
+        <app-hotree-form-field [formField]="eventFee" [formFieldName]="formField.event_fee" [required]="payment.value">
           <div class="payment-fields">
             <div (click)="resetEventFee()" class="custom-control custom-radio custom-control-inline">
               <input type="radio" formControlName="payment" id="freeEvent" [value]="false" class="custom-control-input hotree-radio-button-input">

@@ -57,6 +57,8 @@ export class NewEventComponent implements OnInit {
     this.categories = this.newEventDataService.categories$;
     this.coordinators = this.newEventDataService.coordinators$;
     this.loggedUser = this.authService.user$.getValue();
+
+    this.newEventService.setDynamicValidators(this.newEventForm);
   }
 
   onSubmit(): void {

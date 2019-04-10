@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AbstractControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormGroup, Validators } from '@angular/forms';
 import { NewEvent } from '../models/new-event';
 import { NewEventFormField } from '../new-event-form-fields';
 import { CoordinatorDtoRequest } from '../models/coordinator';
@@ -53,5 +53,17 @@ export class NewEventService {
     }
 
     return durationInHours * 3600;
+  }
+
+  setDynamicValidators(newEventForm: FormGroup): void {
+    newEventForm.get([NewEventFormField.payment]).valueChanges.subscribe(value => {
+      if (value) {
+        newEventForm.get([NewEventFormField.event_fee]).setValidators([Validators.required]);
+        return;
+      }
+
+      newEventForm.get([NewEventFormField.event_fee]).clearValidators();
+      newEventForm.get([NewEventFormField.event_fee]).updateValueAndValidity();
+    });
   }
 }

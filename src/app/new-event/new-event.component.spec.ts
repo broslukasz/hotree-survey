@@ -68,16 +68,16 @@ describe('NewEventComponent', () => {
     newEventService = fixture.debugElement.injector.get(NewEventService);
     newEventDataService = fixture.debugElement.injector.get(NewEventDataService);
     authService = TestBed.get(AuthService);
-
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('should log output of the survey to the console', () => {
     // Arrange
+    fixture.detectChanges();
     spyOn(newEventService, 'logFormOutputToConsole').and.callThrough();
     // Assert
     component.onSubmit();
@@ -88,6 +88,7 @@ describe('NewEventComponent', () => {
 
   it('should check validation if invalid form submitted', () => {
     // Arrange
+    fixture.detectChanges();
     spyOn(newEventService, 'checkFormValidation').and.callThrough();
     component.newEventForm.get(NewEventFormField.title).setValue('');
 
@@ -100,6 +101,7 @@ describe('NewEventComponent', () => {
 
   it('should not explicitly check validation if valid form submitted', () => {
     // Arrange
+    fixture.detectChanges();
     spyOn(newEventService, 'checkFormValidation').and.callThrough();
     // Assert
     component.onSubmit();
@@ -110,6 +112,7 @@ describe('NewEventComponent', () => {
 
   it('should navigate to summary if submitted form is valid', () => {
     // Arrange
+    fixture.detectChanges();
     router = TestBed.get(Router);
     spyOn(router, 'navigate');
     // Assert
@@ -121,11 +124,22 @@ describe('NewEventComponent', () => {
 
   it('should reset event fee when free event clicked', () => {
     // Arrange
+    fixture.detectChanges();
     component.newEventForm.get(NewEventFormField.event_fee).setValue(10);
     // Assert
     component.resetEventFee();
 
     // Expect
     expect(component.eventFee.value).toBe(null);
+  });
+
+  it('should set dynamic validators on init', () => {
+    // Arrange
+    spyOn(newEventService, 'setDynamicValidators').and.callThrough();
+    // Assert
+    fixture.detectChanges();
+
+    // Expect
+    expect(newEventService.setDynamicValidators).toHaveBeenCalled();
   });
 });
