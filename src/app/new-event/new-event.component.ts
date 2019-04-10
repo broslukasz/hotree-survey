@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { NewEvent } from './models/new-event';
 import { Router } from '@angular/router';
 import { NewEventService } from './services/new-event.service';
 import { NewEventFormField } from './new-event-form-fields';
@@ -66,25 +65,7 @@ export class NewEventComponent implements OnInit {
       return;
     }
 
-    this.newEventService.logFormOutputToConsole(
-      new NewEvent(
-        this.newEventForm.get(NewEventFormField.title).value,
-        this.newEventForm.get(NewEventFormField.description).value,
-        this.newEventDataService.prepareCategoryForSend(
-          this.newEventForm.get(NewEventFormField.category).value
-        ),
-        this.newEventForm.get(NewEventFormField.payment).value,
-        this.newEventForm.get(NewEventFormField.event_fee).value,
-        this.newEventForm.get(NewEventFormField.reward).value,
-        this.newEventDataService.prepareCoordinatorForSend(
-          this.newEventForm.get(NewEventFormField.coordinator).value.id,
-          this.newEventForm.get(NewEventFormField.email).value,
-        ),
-        this.newEventDataService.calculateDurationInSeconds(
-          this.newEventForm.get(NewEventFormField.duration).value
-        ),
-      )
-    );
+    this.newEventService.logFormOutputToConsole(this.newEventForm);
 
     this.router.navigate(['summary']);
   }
