@@ -1,15 +1,31 @@
 <div *ngIf="formField" class="form-group row hotree-new-survey-row">
   <label class="col-sm-2 col-form-label hotree-form-label">
-    <span [class.label-is-invalid]="(formField.invalid && formField.touched) && required">{{ newEventFieldDescription[formFieldName] }}</span>
-    <span *ngIf="required" class="required-field-star"> *</span>
+    <span [class.label-is-invalid]="
+    ((formField.invalid && formField.touched) && required)  ||
+    ((formField.invalid && formField.touched) && validate)"
+    >{{newEventFieldDescription[formFieldName]}}</span>
+    <span *ngIf="required" class="required-field-star">  *</span>
   </label>
   <div class="col-sm-8">
     <ng-content></ng-content>
   </div>
-  <app-hotree-tooltip
-    *ngIf="(formField.invalid && formField.touched) && required" class="col-sm-2"
-    tooltipText="{{newEventFieldDescription[formFieldName]}} cannot be empty"
-  ></app-hotree-tooltip>
+  <ng-container *ngIf="!tooltipText">
+    <app-hotree-tooltip
+      *ngIf="
+    ((formField.invalid && formField.touched) && required)  ||
+    ((formField.invalid && formField.touched) && validate)" class="col-sm-2"
+      tooltipText="{{newEventFieldDescription[formFieldName]}} cannot be empty"
+    ></app-hotree-tooltip>
+  </ng-container>
+
+  <ng-container *ngIf="tooltipText">
+    <app-hotree-tooltip
+      *ngIf="
+    ((formField.invalid && formField.touched) && required)  ||
+    ((formField.invalid && formField.touched) && validate)" class="col-sm-2"
+      tooltipText="{{tooltipText}}"
+    ></app-hotree-tooltip>
+  </ng-container>
 </div>
 
 

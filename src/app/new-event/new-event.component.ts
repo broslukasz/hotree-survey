@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NewEventService } from './services/new-event.service';
 import { NewEventFormField } from './new-event-form-fields';
@@ -8,6 +8,13 @@ import { Observable } from 'rxjs';
 import { Category } from './models/category';
 import { Coordinator } from './models/coordinator';
 import { AuthService } from '../../auth/auth.service';
+
+function emailValidator(nameRe: RegExp): ValidatorFn {
+  return (control: AbstractControl): {[key: string]: any} | null => {
+    const email = control.value ? !nameRe.test(control.value) : false;
+    return email ? {'email': {value: control.value}} : null;
+  };
+}
 
 @Component({
   selector: 'app-new-event',
@@ -18,6 +25,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class NewEventComponent implements OnInit {
   readonly formField = NewEventFormField;
+  readonly emailRegexp = new RegExp('^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$');
   title = new FormControl('', Validators.required);
   description = new FormControl('', [Validators.required, Validators.maxLength(140)]);
   category = new FormControl(null);
@@ -25,7 +33,7 @@ export class NewEventComponent implements OnInit {
   eventFee = new FormControl(null);
   reward = new FormControl(null);
   coordinator = new FormControl(this.authService.user$.getValue(), Validators.required);
-  email = new FormControl(null);
+  email = new FormControl(null, emailValidator(this.emailRegexp));
   duration = new FormControl(null);
 
   newEventForm = this.fb.group({
