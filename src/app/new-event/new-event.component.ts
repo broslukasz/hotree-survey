@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { NewEvent } from './models/new-event';
 import { Router } from '@angular/router';
 import { NewEventService } from './services/new-event.service';
@@ -18,17 +18,27 @@ import { AuthService } from '../../auth/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NewEventComponent implements OnInit {
-  public readonly formField = NewEventFormField;
+  readonly formField = NewEventFormField;
+  title = new FormControl('', Validators.required);
+  description = new FormControl('', [Validators.required, Validators.maxLength(140)]);
+  category = new FormControl(null);
+  payment = new FormControl(false);
+  eventFee = new FormControl(null);
+  reward = new FormControl(null);
+  coordinator = new FormControl(this.authService.user$.getValue(), Validators.required);
+  email = new FormControl(null);
+  duration = new FormControl(null);
+
   newEventForm = this.fb.group({
-    [NewEventFormField.title]: ['', Validators.required],
-    [NewEventFormField.description]: ['', [Validators.required, Validators.maxLength(140)]],
-    [NewEventFormField.category]: null,
-    [NewEventFormField.payment]: [false],
-    [NewEventFormField.event_fee]: null,
-    [NewEventFormField.reward]: null,
-    [NewEventFormField.coordinator]: [this.authService.user$.getValue(), Validators.required],
-    [NewEventFormField.email]: [null],
-    [NewEventFormField.duration]: [null],
+    [NewEventFormField.title]: this.title,
+    [NewEventFormField.description]: this.description,
+    [NewEventFormField.category]: this.category,
+    [NewEventFormField.payment]: this.payment,
+    [NewEventFormField.event_fee]: this.eventFee,
+    [NewEventFormField.reward]: this.reward,
+    [NewEventFormField.coordinator]: this.coordinator,
+    [NewEventFormField.email]: this.email,
+    [NewEventFormField.duration]: this.duration,
   });
 
   categories: Observable<Category[]>;
@@ -79,17 +89,7 @@ export class NewEventComponent implements OnInit {
     this.router.navigate(['summary']);
   }
 
-  get title() { return this.newEventForm.get(NewEventFormField.title); }
-  get description() { return this.newEventForm.get(NewEventFormField.description); }
-  get category() { return this.newEventForm.get(NewEventFormField.category); }
-  get payment() { return this.newEventForm.get(NewEventFormField.payment); }
-  get event_fee() { return this.newEventForm.get(NewEventFormField.event_fee); }
-  get reward() { return this.newEventForm.get(NewEventFormField.reward); }
-  get coordinator() { return this.newEventForm.get(NewEventFormField.coordinator); }
-  get email() { return this.newEventForm.get(NewEventFormField.email); }
-  get duration() { return this.newEventForm.get(NewEventFormField.duration); }
-
   resetEventFee() {
-    this.event_fee.reset();
+    this.eventFee.reset();
   }
 }

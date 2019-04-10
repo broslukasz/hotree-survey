@@ -126,6 +126,6 @@ describe('NewEventComponent', () => {
     component.resetEventFee();
 
     // Expect
-    expect(component.event_fee.value).toBe(null);
+    expect(component.eventFee.value).toBe(null);
   });
 });
