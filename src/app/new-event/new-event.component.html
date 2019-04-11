@@ -119,10 +119,12 @@
                                [hotreeFormField]="date" [hotreeFormFieldName]="formField.date">
           <div class="custom-control-inline">
             <input type="date" [formControlName]="formField.calendarDate"
-                   class="form-control hotree-medium-input" [class.is-invalid]="date.invalid && date.touched" [id]="formField.date + 'Control'">
+                   class="form-control hotree-medium-input" [class.is-invalid]="(date.invalid && date.touched) && calendarDate.invalid" [id]="formField.date + 'Control'">
             <div class="input-post-label">
               <span>at</span>
             </div>
+            <input type="time" [formControlName]="formField.time"
+                   class="form-control hotree-short-input" [class.is-invalid]="(date.invalid && date.touched) && time.invalid" [id]="formField.date + 'Control'">
           </div>
         </app-hotree-form-field>
 

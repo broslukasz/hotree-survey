@@ -78,12 +78,7 @@ export class NewEventService implements OnDestroy {
   }
 
   private prepareDateForSend(eventDate: IEventDate): string {
-    const calendarDate: Date = new Date(eventDate.calendarDate);
-    const isoStringDate = new Date(
-      calendarDate.getFullYear(),
-      calendarDate.getMonth(),
-      calendarDate.getDay(),
-      ).toISOString();
+    const isoStringDate = new Date(`${eventDate.calendarDate} ${eventDate.time}`).toISOString();
     return isoStringDate;
   }
 }

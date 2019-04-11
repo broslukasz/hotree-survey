@@ -29,12 +29,10 @@ export class NewEventComponent implements OnInit {
   duration = new FormControl(null);
 
   calendarDate = new FormControl(null, [Validators.required]);
-  time = new FormControl(null);
-  timePeriod = new FormControl(null);
+  time = new FormControl(null, [Validators.required]);
   date = this.fb.group({
     [NewEventFormField.calendarDate]: this.calendarDate,
-    [NewEventFormField.time]: this.time,
-    [NewEventFormField.timePeriod]: this.timePeriod,
+    [NewEventFormField.time]: this.time
   });
 
   newEventForm = this.fb.group({
@@ -70,12 +68,13 @@ export class NewEventComponent implements OnInit {
 
     this.newEventService.setDynamicValidators(this.newEventForm);
 
-    this.populateTestData();
+    // this.populateTestData();
   }
 
   private populateTestData(): void {
     this.date.patchValue({
-      [NewEventFormField.calendarDate]: '11-02-1990'
+      [NewEventFormField.calendarDate]: '11-02-1990',
+      [NewEventFormField.time]: '13:34',
     });
     this.newEventForm.patchValue({
       [NewEventFormField.title]: 'Sample title',
