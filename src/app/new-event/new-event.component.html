@@ -99,8 +99,7 @@
         </app-hotree-form-field>
 
         <app-hotree-form-field
-          [formField]="email" [formFieldName]="formField.email"
-          [validate]="true" [tooltipText]="'Email is invalid'">
+          [formField]="email" [formFieldName]="formField.email" [tooltipText]="'Email is invalid'">
           <input type="text" [formControlName]="formField.email"
                  class="form-control" [class.is-invalid]="(email.invalid && email.touched)" [id]="formField.email + 'Control'"
                  placeholder="Email">

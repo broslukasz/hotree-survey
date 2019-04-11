@@ -18,9 +18,6 @@ export class HotreeFormFieldComponent implements OnInit {
   required = false;
 
   @Input()
-  validate = false;
-
-  @Input()
   tooltipText: string;
 
   readonly newEventFieldDescription = NewEventFieldDescription;
