@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AbstractControl } from '@angular/forms';
 import { NewEventFieldDescription } from '../new-event-form-fields';
 
@@ -7,7 +7,7 @@ import { NewEventFieldDescription } from '../new-event-form-fields';
   templateUrl: './hotree-form-field.component.html',
   styleUrls: ['./hotree-form-field.component.scss']
 })
-export class HotreeFormFieldComponent implements OnInit {
+export class HotreeFormFieldComponent {
   @Input()
   hotreeFormField: AbstractControl | null;
 
@@ -21,10 +21,5 @@ export class HotreeFormFieldComponent implements OnInit {
   hotreeTooltipText: string;
 
   readonly newEventFieldDescription = NewEventFieldDescription;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
 
 }
