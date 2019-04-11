@@ -9,16 +9,16 @@ import { NewEventFieldDescription } from '../new-event-form-fields';
 })
 export class HotreeFormFieldComponent implements OnInit {
   @Input()
-  formField: AbstractControl | null;
+  hotreeFormField: AbstractControl | null;
 
   @Input()
-  formFieldName: string;
+  hotreeFormFieldName: string;
 
   @Input()
-  required = false;
+  hotreeRequired = false;
 
   @Input()
-  tooltipText: string;
+  hotreeTooltipText: string;
 
   readonly newEventFieldDescription = NewEventFieldDescription;
 

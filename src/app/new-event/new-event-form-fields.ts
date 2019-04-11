@@ -8,6 +8,10 @@ export enum NewEventFormField {
   coordinator = 'coordinator',
   email = 'email',
   duration = 'duration',
+  date = 'date',
+  calendarDate = 'calendarDate',
+  time = 'time',
+  timePeriod = 'timePeriod'
 }
 
 export enum NewEventFieldDescription {
@@ -19,5 +23,9 @@ export enum NewEventFieldDescription {
   reward = 'Reward',
   coordinator = 'Responsible',
   email = 'Email',
-  duration = 'Duration'
+  duration = 'Duration',
+  date = 'Starts on',
+  calendarDate = 'Date',
+  time = 'Time',
+  timePeriod = 'Time Period'
 }

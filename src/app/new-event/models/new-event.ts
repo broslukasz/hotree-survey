@@ -8,7 +8,8 @@ export class NewEvent {
     public paid_event: boolean,
     public event_fee: number,
     public reward: number,
-    public coordinator: CoordinatorDtoRequest,
-    public duration: number
+    public date: string,
+    public duration: number,
+    public coordinator: CoordinatorDtoRequest
   ) { }
 }

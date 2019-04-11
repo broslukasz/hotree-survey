@@ -1,24 +1,24 @@
-<div *ngIf="formField" class="form-group row hotree-new-survey-row">
+<div *ngIf="hotreeFormField" class="form-group row hotree-new-survey-row">
   <label class="col-sm-2 col-form-label hotree-form-label">
-    <span [class.label-is-invalid]="((formField.invalid && formField.touched) && (required || formField.errors))"
-    >{{newEventFieldDescription[formFieldName]}}</span>
-    <span *ngIf="required" class="required-field-star">  *</span>
+    <span [class.label-is-invalid]="((hotreeFormField.invalid && hotreeFormField.touched) && (hotreeRequired || hotreeFormField.errors))"
+    >{{newEventFieldDescription[hotreeFormFieldName]}}</span>
+    <span *ngIf="hotreeRequired" class="required-field-star">  *</span>
   </label>
   <div class="col-sm-8">
     <ng-content></ng-content>
   </div>
-  <ng-container *ngIf="!tooltipText">
+  <ng-container *ngIf="!hotreeTooltipText">
     <app-hotree-tooltip
       *ngIf="
-    ((formField.invalid && formField.touched) && (required || formField.errors))" class="col-sm-2"
-      tooltipText="{{newEventFieldDescription[formFieldName]}} cannot be empty"
+    ((hotreeFormField.invalid && hotreeFormField.touched) && (hotreeRequired || hotreeFormField.errors))" class="col-sm-2"
+      tooltipText="{{newEventFieldDescription[hotreeFormFieldName]}} cannot be empty"
     ></app-hotree-tooltip>
   </ng-container>
 
-  <ng-container *ngIf="tooltipText">
+  <ng-container *ngIf="hotreeTooltipText">
     <app-hotree-tooltip
-      *ngIf="((formField.invalid && formField.touched) && (required || formField.errors))" class="col-sm-2"
-      tooltipText="{{tooltipText}}"
+      *ngIf="((hotreeFormField.invalid && hotreeFormField.touched) && (hotreeRequired || hotreeFormField.errors))" class="col-sm-2"
+      tooltipText="{{hotreeTooltipText}}"
     ></app-hotree-tooltip>
   </ng-container>
 </div>

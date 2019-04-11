@@ -5,13 +5,14 @@
         <h5 class="card-title">About</h5>
         <hr/>
 
-        <app-hotree-form-field [required]="true" [formField]="title" [formFieldName]="formField.title">
+        <app-hotree-form-field [hotreeRequired]="true" [hotreeFormField]="title" [hotreeFormFieldName]="formField.title">
           <input type="text" [formControlName]="formField.title"
                  class="form-control" [class.is-invalid]="title.invalid && title.touched" [id]="formField.title + 'Control'"
                  placeholder="Make it short and clear">
         </app-hotree-form-field>
 
-        <app-hotree-form-field [required]="true" [formField]="description" [formFieldName]="formField.description">
+        <app-hotree-form-field [hotreeRequired]="true" [hotreeFormField]="description"
+                               [hotreeFormFieldName]="formField.description">
             <textarea type="text" [formControlName]="formField.description" maxlength="140"
                                 class="form-control description-textarea" [class.is-invalid]="description.invalid && description.touched" [id]="formField.description + 'Control'"
                                 placeholder="Write about your event, be creative"></textarea>
@@ -21,7 +22,7 @@
             </div>
         </app-hotree-form-field>
 
-        <app-hotree-form-field [formField]="category" [formFieldName]="formField.category" >
+        <app-hotree-form-field [hotreeFormField]="category" [hotreeFormFieldName]="formField.category">
           <select class="form-control" [class.hotree-option-text]="category.pristine"
                   formControlName="category">
             <option hidden>Select category (skills, interest, location)</option>
@@ -34,7 +35,8 @@
           </div>
         </app-hotree-form-field>
 
-        <app-hotree-form-field [formField]="eventFee" [formFieldName]="formField.event_fee" [required]="payment.value">
+        <app-hotree-form-field [hotreeFormField]="eventFee" [hotreeFormFieldName]="formField.event_fee"
+                               [hotreeRequired]="payment.value">
           <div class="payment-fields">
             <div (click)="resetEventFee()" class="custom-control custom-radio custom-control-inline">
               <input type="radio" formControlName="payment" id="freeEvent" [value]="false" class="custom-control-input hotree-radio-button-input">
@@ -55,7 +57,7 @@
           </div>
         </app-hotree-form-field>
 
-        <app-hotree-form-field [formField]="reward" [formFieldName]="formField.reward">
+        <app-hotree-form-field [hotreeFormField]="reward" [hotreeFormFieldName]="formField.reward">
           <div class="custom-control-inline">
             <input type="number" [formControlName]="formField.reward"
                    class="form-control hotree-small-input" [class.is-invalid]="reward.invalid && reward.touched" [id]="formField.reward + 'Control'"
@@ -74,7 +76,8 @@
         <h5 class="card-title">Coordinator</h5>
         <hr/>
 
-        <app-hotree-form-field [required]="true" [formField]="coordinator" [formFieldName]="formField.coordinator">
+        <app-hotree-form-field [hotreeRequired]="true" [hotreeFormField]="coordinator"
+                               [hotreeFormFieldName]="formField.coordinator">
           <select class="form-control"
                   formControlName="coordinator">
               <optgroup label="Me">
@@ -99,7 +102,7 @@
         </app-hotree-form-field>
 
         <app-hotree-form-field
-          [formField]="email" [formFieldName]="formField.email" [tooltipText]="'Email is invalid'">
+          [hotreeFormField]="email" [hotreeFormFieldName]="formField.email" [hotreeTooltipText]="'Email is invalid'">
           <input type="text" [formControlName]="formField.email"
                  class="form-control" [class.is-invalid]="(email.invalid && email.touched)" [id]="formField.email + 'Control'"
                  placeholder="Email">
@@ -112,12 +115,23 @@
         <h5 class="card-title">When</h5>
         <hr/>
 
-        <app-hotree-form-field [formField]="duration" [formFieldName]="formField.duration">
+        <app-hotree-form-field [formGroupName]="formField.date" [hotreeRequired]="true" [hotreeTooltipText]="'Date or time invalid'"
+                               [hotreeFormField]="date" [hotreeFormFieldName]="formField.date">
+          <div class="custom-control-inline">
+            <input type="date" [formControlName]="formField.calendarDate"
+                   class="form-control hotree-medium-input" [class.is-invalid]="date.invalid && date.touched" [id]="formField.date + 'Control'">
+            <div class="input-post-label">
+              <span>at</span>
+            </div>
+          </div>
+        </app-hotree-form-field>
+
+        <app-hotree-form-field [hotreeFormField]="duration" [hotreeFormFieldName]="formField.duration">
           <div class="custom-control-inline">
             <input type="number" [formControlName]="formField.duration"
                    class="form-control hotree-small-input" [class.is-invalid]="duration.invalid && duration.touched" [id]="formField.duration + 'Control'"
                    placeholder="Number">
-            <div class="hour-text">
+            <div class="input-post-label">
               <span>hour</span>
             </div>
           </div>

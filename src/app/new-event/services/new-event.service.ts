@@ -5,6 +5,7 @@ import { NewEventFormField } from '../new-event-form-fields';
 import { CoordinatorDtoRequest } from '../models/coordinator';
 import { isNull } from 'util';
 import { Subscription } from 'rxjs';
+import { IEventDate } from '../models/event-date';
 
 @Injectable()
 export class NewEventService implements OnDestroy {
@@ -25,12 +26,15 @@ export class NewEventService implements OnDestroy {
       newEventForm.get(NewEventFormField.payment).value,
       newEventForm.get(NewEventFormField.event_fee).value,
       newEventForm.get(NewEventFormField.reward).value,
-      this.prepareCoordinatorForSend(
-        newEventForm.get(NewEventFormField.coordinator).value.id,
-        newEventForm.get(NewEventFormField.email).value,
+      this.prepareDateForSend(
+        newEventForm.get(NewEventFormField.date).value
       ),
       this.calculateDurationInSeconds(
         newEventForm.get(NewEventFormField.duration).value
+      ),
+      this.prepareCoordinatorForSend(
+        newEventForm.get(NewEventFormField.coordinator).value.id,
+        newEventForm.get(NewEventFormField.email).value,
       ),
     );
 
@@ -71,5 +75,15 @@ export class NewEventService implements OnDestroy {
       newEventForm.get([NewEventFormField.event_fee]).clearValidators();
       newEventForm.get([NewEventFormField.event_fee]).updateValueAndValidity();
     });
+  }
+
+  private prepareDateForSend(eventDate: IEventDate): string {
+    const calendarDate: Date = new Date(eventDate.calendarDate);
+    const isoStringDate = new Date(
+      calendarDate.getFullYear(),
+      calendarDate.getMonth(),
+      calendarDate.getDay(),
+      ).toISOString();
+    return isoStringDate;
   }
 }

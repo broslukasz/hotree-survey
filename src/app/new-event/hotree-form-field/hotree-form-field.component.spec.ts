@@ -20,7 +20,7 @@ describe('HotreeFormFieldComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HotreeFormFieldComponent);
     component = fixture.componentInstance;
-    component.formField = mock(AbstractControl);
+    component.hotreeFormField = mock(AbstractControl);
     fixture.detectChanges();
   });
 

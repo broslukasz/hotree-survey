@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NewEventService } from './services/new-event.service';
 import { NewEventFormField } from './new-event-form-fields';
@@ -28,6 +28,15 @@ export class NewEventComponent implements OnInit {
   email = new FormControl(null, [Validators.email]);
   duration = new FormControl(null);
 
+  calendarDate = new FormControl(null, [Validators.required]);
+  time = new FormControl(null);
+  timePeriod = new FormControl(null);
+  date = this.fb.group({
+    [NewEventFormField.calendarDate]: this.calendarDate,
+    [NewEventFormField.time]: this.time,
+    [NewEventFormField.timePeriod]: this.timePeriod,
+  });
+
   newEventForm = this.fb.group({
     [NewEventFormField.title]: this.title,
     [NewEventFormField.description]: this.description,
@@ -37,6 +46,7 @@ export class NewEventComponent implements OnInit {
     [NewEventFormField.reward]: this.reward,
     [NewEventFormField.coordinator]: this.coordinator,
     [NewEventFormField.email]: this.email,
+    [NewEventFormField.date]: this.date,
     [NewEventFormField.duration]: this.duration,
   });
 
@@ -59,6 +69,25 @@ export class NewEventComponent implements OnInit {
     this.loggedUser = this.authService.user$.getValue();
 
     this.newEventService.setDynamicValidators(this.newEventForm);
+
+    this.populateTestData();
+  }
+
+  private populateTestData(): void {
+    this.date.patchValue({
+      [NewEventFormField.calendarDate]: '11-02-1990'
+    });
+    this.newEventForm.patchValue({
+      [NewEventFormField.title]: 'Sample title',
+      [NewEventFormField.description]: 'Sample description',
+      [NewEventFormField.category]: null,
+      [NewEventFormField.payment]: false,
+      [NewEventFormField.event_fee]: null,
+      [NewEventFormField.reward]: null,
+      [NewEventFormField.coordinator]: this.authService.user$.getValue,
+      [NewEventFormField.email]: '',
+      [NewEventFormField.duration]: null,
+    });
   }
 
   onSubmit(): void {
@@ -69,7 +98,7 @@ export class NewEventComponent implements OnInit {
 
     this.newEventService.logFormOutputToConsole(this.newEventForm);
 
-    this.router.navigate(['summary']);
+    // this.router.navigate(['summary']);
   }
 
   resetEventFee() {
