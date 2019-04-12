@@ -25,6 +25,10 @@ describe('NewEventComponent', () => {
     event_fee: null,
     reward: null,
     coordinator: '',
+    date: formBuilder.group({
+      [NewEventFormField.calendarDate]: ['this.calendarDate,', Validators.required],
+      [NewEventFormField.time]: ['this.calendarDate,', Validators.required]
+    }),
     email: '',
     duration: null,
   };

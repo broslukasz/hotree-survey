@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NewEventService } from './services/new-event.service';
 import { NewEventFormField } from './new-event-form-fields';
@@ -30,7 +30,7 @@ export class NewEventComponent implements OnInit {
 
   calendarDate = new FormControl(null, [Validators.required]);
   time = new FormControl(null, [Validators.required]);
-  date = this.fb.group({
+  date = new FormGroup({
     [NewEventFormField.calendarDate]: this.calendarDate,
     [NewEventFormField.time]: this.time
   });
@@ -97,7 +97,7 @@ export class NewEventComponent implements OnInit {
 
     this.newEventService.logFormOutputToConsole(this.newEventForm);
 
-    // this.router.navigate(['summary']);
+    this.router.navigate(['summary']);
   }
 
   resetEventFee() {
